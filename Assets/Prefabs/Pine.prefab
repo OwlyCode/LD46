@@ -13,8 +13,9 @@ GameObject:
   - component: {fileID: 1197848765955462122}
   - component: {fileID: 1197848765955462125}
   - component: {fileID: 1197848765955462123}
+  - component: {fileID: 3952515255493540905}
   m_Layer: 0
-  m_Name: T_Tree_Pin
+  m_Name: Pine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -122,3 +123,15 @@ CapsuleCollider:
   m_Height: 0.74
   m_Direction: 1
   m_Center: {x: 0, y: 0.31, z: 0}
+--- !u!114 &3952515255493540905
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1197848765955462126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 123572b62c17cfd46afa98c916e72bc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
