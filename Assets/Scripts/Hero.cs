@@ -23,7 +23,8 @@ public class Hero : MonoBehaviour
 
     void FixedUpdate()
     {
-        GetComponent<Rigidbody>().velocity = new Vector3(move.x, 0f, move.y) * Time.fixedDeltaTime * speed;
+        Vector3 currentVelocity = GetComponent<Rigidbody>().velocity;
+        GetComponent<Rigidbody>().velocity = new Vector3(0f, currentVelocity.y, 0f) + new Vector3(move.x, 0f, move.y) * Time.fixedDeltaTime * speed;
     }
     private void LateUpdate()
     {
