@@ -24,7 +24,7 @@ public class Tree : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, 0f, -10f + Mathf.Sin(offset + Time.time * 10f) * (wind + excitation));
+        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, 0f, -wind*2f + Mathf.Sin(offset + Time.time * 10f) * (wind + excitation));
         // transform.position += Vector3.right * ;
         excitation = excitation / 1.01f;
         if (excitation < 1f) {
