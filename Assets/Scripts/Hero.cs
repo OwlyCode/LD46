@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class Hero : MonoBehaviour
 {
-    const float speed = 100f;
+    const float speed = 150f;
 
     Vector2 move;
 
