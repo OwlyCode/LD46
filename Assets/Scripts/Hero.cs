@@ -7,8 +7,9 @@ public class Hero : MonoBehaviour
 {
     const float speed = 150f;
 
-    Vector2 move;
-
+    public bool IsMoving = false;
+    public Vector2 move;
+    
     void Start()
     {
         
@@ -16,11 +17,16 @@ public class Hero : MonoBehaviour
 
     void OnMove(InputValue value)
     {
+        //IsMoving = true;
         move = value.Get<Vector2>();
     }
 
     void FixedUpdate()
     {
         GetComponent<Rigidbody>().velocity = new Vector3(move.x, 0f, move.y) * Time.fixedDeltaTime * speed;
+    }
+    private void LateUpdate()
+    {
+        IsMoving = false;
     }
 }
