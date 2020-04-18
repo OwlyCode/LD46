@@ -10,9 +10,9 @@ public class Village : MonoBehaviour
         
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionEnter(Collision collision)
     {
-        foreach (ContactPoint2D contact in collision.contacts)
+        foreach (ContactPoint contact in collision.contacts)
         {
             Debug.DrawRay(contact.point, contact.normal, Color.white);
         }
@@ -20,7 +20,7 @@ public class Village : MonoBehaviour
         Debug.Log("hit !");
     }
 
-    void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter(Collider other)
     {
         Debug.Log("Upgrade zone");
     }    
