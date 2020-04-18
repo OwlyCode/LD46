@@ -12,7 +12,7 @@ public class Tree : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        offset = Random.Range(0f, 1f);
+        offset = Random.Range(0f, 10f);
         excitation = 0f;        
     }
 
