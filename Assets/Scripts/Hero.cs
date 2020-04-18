@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class Hero : MonoBehaviour
 {
-    const float speed = 1f;
+    const float speed = 50f;
 
     Vector2 move;
 
@@ -21,6 +21,7 @@ public class Hero : MonoBehaviour
 
     void FixedUpdate()
     {
-        transform.position = transform.position + (Vector3) move * Time.fixedDeltaTime * speed;
+        GetComponent<Rigidbody2D>().velocity = move * Time.fixedDeltaTime * speed;
+        //transform.position = transform.position + (Vector3) move * Time.fixedDeltaTime * speed;
     }
 }
