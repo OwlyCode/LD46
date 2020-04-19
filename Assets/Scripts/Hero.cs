@@ -37,6 +37,21 @@ public class Hero : MonoBehaviour
         
     }
 
+    public void LoseAllModules()
+    {
+        hasObservatory = false;
+
+        if (hasHelmet && !damagedHelmet) {
+            damagedHelmet = true;
+        } else {
+            hasHelmet = false;
+        }
+
+        hasWall = false;
+        hasMill = false;
+        hasWatchTower = false;
+    }
+
     public void LoseModule()
     {
         if (!hasAnyModule()) {
@@ -49,9 +64,11 @@ public class Hero : MonoBehaviour
             } else {
                 hasHelmet = false;
             }
+
+            return;
         }
 
-        string[] modules = new []{"observatory", "wall", "mill", "watchtower"};
+        string[] modules = new []{hasObservatory ? "observatory" : "", hasWall ? "wall" : null, hasMill ? "mill" : "", hasWatchTower ? "watchtower": ""};
         List<string> existingModules = (from item in modules where item != "" select item).ToList();
 
         string destroyed = existingModules[Random.Range(0, existingModules.Count)];
@@ -112,10 +129,15 @@ public class Hero : MonoBehaviour
 
         Debug.DrawRay(transform.position +  Vector3.up * groundedCastVerticalOffset, Vector3.down * groundedRaycastDistance, Color.yellow);
 
-        if (grounded == false && this.grounded)
+        if (!grounded && this.grounded)
         {
             GetComponent<Rigidbody>().velocity = Vector3.zero;
             GetComponent<Rigidbody>().AddForce(new Vector3(lastMovement.x * jumpSideForce, jumpUpForce, lastMovement.y * jumpSideForce));
+        }
+
+        if (grounded && !this.grounded && !hasMill) {
+            // Fall
+            LoseAllModules();
         }
 
         this.grounded = grounded;

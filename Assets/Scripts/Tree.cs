@@ -20,7 +20,7 @@ public class Tree : MonoBehaviour
     void OnCollisionEnter(Collision collision)
     {
         // A remplacer par le check de module
-        if (true) {
+        if (!collision.collider.GetComponent<Hero>().hasAnyModule()) {
             Physics.IgnoreCollision(GetComponent<Collider>(), collision.collider);
             StartCoroutine("ForgetCollisionIgnore", collision);
         }

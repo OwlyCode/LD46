@@ -1013,6 +1013,11 @@ MonoBehaviour:
   IsMoving: 0
   move: {x: 0, y: 0}
   lastMovement: {x: 0, y: 0}
+  hasObservatory: 0
+  hasHelmet: 0
+  hasWall: 0
+  hasMill: 0
+  hasWatchTower: 0
   animator: {fileID: 327667188}
 --- !u!136 &327667183
 CapsuleCollider:
