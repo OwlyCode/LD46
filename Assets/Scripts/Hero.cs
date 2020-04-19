@@ -32,9 +32,12 @@ public class Hero : MonoBehaviour
     bool damagedHelmet = false;
 
     public Animator animator;
-    void Start()
+
+    Vector3 windModifier = Vector3.zero;
+
+    public void ApplyWind(Vector3 windModifier)
     {
-        
+        this.windModifier = windModifier;
     }
 
     public void LoseAllModules()
@@ -134,6 +137,9 @@ public class Hero : MonoBehaviour
             GetComponent<Rigidbody>().velocity = Vector3.zero;
             GetComponent<Rigidbody>().AddForce(new Vector3(lastMovement.x * jumpSideForce, jumpUpForce, lastMovement.y * jumpSideForce));
         }
+
+        GetComponent<Rigidbody>().AddForce(windModifier);
+
 
         if (grounded && !this.grounded && !hasMill) {
             // Fall
