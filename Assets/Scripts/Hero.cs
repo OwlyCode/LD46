@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Linq;
+using Cinemachine;
 
 public class Hero : MonoBehaviour
 {
@@ -20,6 +21,8 @@ public class Hero : MonoBehaviour
     public Vector2 move;
     
     public Vector2 lastMovement; // Last non null movement
+
+    public CinemachineVirtualCamera baseCamera;
 
     bool grounded = true;
 
@@ -148,6 +151,8 @@ public class Hero : MonoBehaviour
         wall.SetActive(hasWall);
         watchtower.SetActive(hasWatchTower);
         observatory.SetActive(hasObservatory);
+
+        baseCamera.Priority = hasWatchTower ? 5 : 20;
 
         bool grounded = Physics.Raycast(transform.position + Vector3.up * groundedCastVerticalOffset, Vector3.down, groundedRaycastDistance, LayerMask.GetMask("Ground"));
 
