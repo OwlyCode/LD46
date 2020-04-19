@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Linq;
 
 public class Hero : MonoBehaviour
 {
@@ -22,10 +23,58 @@ public class Hero : MonoBehaviour
 
     bool grounded = true;
 
+    public bool hasObservatory = false;
+    public bool hasHelmet = false;
+    public bool hasWall = false;
+    public bool hasMill = false;
+    public bool hasWatchTower = false;
+
+    bool damagedHelmet = false;
+
     public Animator animator;
     void Start()
     {
         
+    }
+
+    public void LoseModule()
+    {
+        if (!hasAnyModule()) {
+            // TODO: gameover ! 
+        }
+
+        if (hasHelmet) {
+            if (damagedHelmet) {
+                hasHelmet = false;
+            } else {
+                hasHelmet = false;
+            }
+        }
+
+        string[] modules = new []{"observatory", "wall", "mill", "watchtower"};
+        List<string> existingModules = (from item in modules where item != "" select item).ToList();
+
+        string destroyed = existingModules[Random.Range(0, existingModules.Count)];
+
+        switch (destroyed) {
+            case "observatory":
+                hasObservatory = false;
+            break;
+            case "wall":
+                hasWall = false;
+            break;
+            case "mill":
+                hasMill = false;
+            break;
+            case "watchtower":
+                hasWatchTower = false;
+            break;
+        }
+    }
+
+    public bool hasAnyModule()
+    {
+        return hasObservatory || hasHelmet || hasWall || hasMill || hasWatchTower;
     }
 
     void OnMove(InputValue value)
