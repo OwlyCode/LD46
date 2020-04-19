@@ -203,7 +203,7 @@ GameObject:
   - component: {fileID: 11179694}
   - component: {fileID: 11179693}
   - component: {fileID: 11179692}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -295,7 +295,7 @@ GameObject:
   - component: {fileID: 31033878}
   - component: {fileID: 31033880}
   - component: {fileID: 31033879}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Terrain_(0.0, 0.0, -32.0)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -378,7 +378,7 @@ GameObject:
   - component: {fileID: 75819977}
   - component: {fileID: 75819976}
   - component: {fileID: 75819975}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WaterFloatLineQuad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -676,7 +676,7 @@ GameObject:
   - component: {fileID: 156093708}
   - component: {fileID: 156093707}
   - component: {fileID: 156093706}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -772,7 +772,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 273479769}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: ======= Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1013,6 +1013,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsMoving: 0
   move: {x: 0, y: 0}
+  lastMovement: {x: 0, y: 0}
 --- !u!136 &327667183
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1777,7 +1778,7 @@ GameObject:
   - component: {fileID: 543629779}
   - component: {fileID: 543629781}
   - component: {fileID: 543629780}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Terrain_(0.0, 0.0, 32.0)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2003,7 +2004,7 @@ GameObject:
   - component: {fileID: 620995362}
   - component: {fileID: 620995364}
   - component: {fileID: 620995363}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Terrain_(-32.0, 0.0, 32.0)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2148,7 +2149,7 @@ GameObject:
   - component: {fileID: 680233918}
   - component: {fileID: 680233920}
   - component: {fileID: 680233919}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Terrain_(32.0, 0.0, 32.0)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2305,7 +2306,7 @@ GameObject:
   - component: {fileID: 743076968}
   - component: {fileID: 743076970}
   - component: {fileID: 743076969}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Terrain_(32.0, 0.0, 0.0)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3352,7 +3353,7 @@ GameObject:
   - component: {fileID: 1098874524}
   - component: {fileID: 1098874526}
   - component: {fileID: 1098874525}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Terrain_(-32.0, 0.0, 0.0)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3429,7 +3430,7 @@ GameObject:
   - component: {fileID: 1111579864}
   - component: {fileID: 1111579863}
   - component: {fileID: 1111579862}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WaterFloatLine
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3591,7 +3592,7 @@ GameObject:
   - component: {fileID: 1123659771}
   - component: {fileID: 1123659773}
   - component: {fileID: 1123659772}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Terrain_(32.0, 0.0, -32.0)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3736,12 +3737,12 @@ GameObject:
   - component: {fileID: 1127928094}
   - component: {fileID: 1127928093}
   - component: {fileID: 1127928092}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 4294967294
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!154 &1127928092
 TerrainCollider:
@@ -4011,7 +4012,7 @@ GameObject:
   - component: {fileID: 1230863582}
   - component: {fileID: 1230863584}
   - component: {fileID: 1230863583}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Water
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4627,7 +4628,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1356130694}
-  m_LocalRotation: {x: -0.42415535, y: -0.000000019601131, z: 0.000000041849233, w: -0.9055895}
+  m_LocalRotation: {x: -0.42415535, y: -0.000000019601135, z: 0.000000041849233, w: -0.9055895}
   m_LocalPosition: {x: 19.24, y: 8.043915, z: 8.87}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -4959,7 +4960,7 @@ GameObject:
   - component: {fileID: 1523387794}
   - component: {fileID: 1523387793}
   - component: {fileID: 1523387792}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5781,7 +5782,7 @@ GameObject:
   - component: {fileID: 1965324309}
   - component: {fileID: 1965324308}
   - component: {fileID: 1965324307}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5873,7 +5874,7 @@ GameObject:
   - component: {fileID: 1972587577}
   - component: {fileID: 1972587579}
   - component: {fileID: 1972587578}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Terrain_(-32.0, 0.0, -32.0)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
