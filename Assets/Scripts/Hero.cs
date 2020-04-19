@@ -12,7 +12,7 @@ public class Hero : MonoBehaviour
     const float jumpUpForce = 200f;
     const float jumpSideForce = 70f;
 
-    const float groundedRaycastDistance = 0.8f;
+    const float groundedRaycastDistance = 1f;
 
     const float groundedCastVerticalOffset = 0.4f;
 
@@ -113,6 +113,32 @@ public class Hero : MonoBehaviour
     public bool hasAnyModule()
     {
         return hasObservatory || hasHelmet || hasWall || hasMill || hasWatchTower;
+    }
+
+    void OnToggleHelmet()
+    {
+        hasHelmet = true;
+        damagedHelmet = false;
+    }
+
+    void OnToggleObservatory()
+    {
+        hasObservatory = true;
+    }
+
+    void OnToggleWall()
+    {
+        hasWall = true;
+    }
+
+    void OnToggleMill()
+    {
+        hasMill = true;
+    }
+
+    void OnToggleWatchtower()
+    {
+        hasWatchTower = true;
     }
 
     void OnMove(InputValue value)

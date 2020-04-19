@@ -50,6 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40d129b2cf4af424fae862a436b0b0b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toggledItem: Helmet
 --- !u!135 &1106904248343383864
 SphereCollider:
   m_ObjectHideFlags: 0

@@ -8,6 +8,6 @@ public class DynamicDepth : MonoBehaviour
 
     void Update()
     {
-        GetComponent<SpriteRenderer>().sortingOrder = transform.parent.GetComponent<SpriteRenderer>().sortingOrder + (isInFront ? 1 : 0);
+        GetComponent<SpriteRenderer>().sortingOrder = transform.parent.GetComponent<SpriteRenderer>().sortingOrder + (isInFront ? 1 : -1);
     }
 }

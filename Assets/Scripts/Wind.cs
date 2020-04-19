@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Wind : MonoBehaviour
 {
-    const float slowFactor = 100f;
+    const float slowFactor = 200f;
 
     // Start is called before the first frame update
     void Start()
