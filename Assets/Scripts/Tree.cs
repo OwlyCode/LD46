@@ -18,13 +18,16 @@ public class Tree : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        // A remplacer par le check de module
-        if (!collision.collider.GetComponent<Hero>().hasAnyModule()) {
-            Physics.IgnoreCollision(GetComponent<Collider>(), collision.collider);
-            StartCoroutine("ForgetCollisionIgnore", collision);
-        }
+        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Player")) {
 
-        excitation = 80f;
+            // A remplacer par le check de module
+            if (!collision.collider.GetComponent<Hero>().hasAnyModule()) {
+                Physics.IgnoreCollision(GetComponent<Collider>(), collision.collider);
+                StartCoroutine("ForgetCollisionIgnore", collision);
+            }
+
+            excitation = 80f;
+        }
     }
 
     IEnumerator ForgetCollisionIgnore(Collision collision) 

@@ -100,12 +100,19 @@ public class Hero : MonoBehaviour
         hasWatchTower = false;
     }
 
-    public void LoseModule()
+    public void HordeDamage()
     {
         if (!hasAnyModule()) {
             // TODO: gameover ! 
+
+            return;
         }
 
+        LoseModule();
+    }
+
+    public void LoseModule()
+    {
         if (hasHelmet) {
             if (damagedHelmet) {
                 hasHelmet = false;
