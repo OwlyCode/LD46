@@ -7,9 +7,9 @@ public class Hero : MonoBehaviour
 {
     const float speed = 150f;
 
-    public bool IsMoving = false;
     public Vector2 move;
-    
+
+    public Animator animator;
     void Start()
     {
         
@@ -17,12 +17,39 @@ public class Hero : MonoBehaviour
 
     void OnMove(InputValue value)
     {
-        //IsMoving = true;
         move = value.Get<Vector2>();
+
+        animator.SetInteger("MoveLeftRight", 0);
+        animator.SetInteger("MoveUpDown", 0);
+
+        if (move.x > 0)
+        {
+            animator.SetInteger("MoveLeftRight", 1);
+        }
+        else if(move.x < 0)
+        {
+            animator.SetInteger("MoveLeftRight", -1);
+        }
+        if(move.y > 0)
+        {
+            animator.SetInteger("MoveUpDown", 1);
+        }
+        else if (move.y < 0)
+        {
+            animator.SetInteger("MoveUpDown", -1);
+        }
     }
 
     void FixedUpdate()
     {
+        if(move.x == 0)
+        {
+            animator.SetInteger("MoveLeftRight", 0);
+        }
+        if (move.y == 0)
+        {
+            animator.SetInteger("MoveUpDown", 0);
+        }
         GetComponent<SpriteRenderer>().sortingOrder = (int) -(transform.position.z * 1000);
 
         Vector3 currentVelocity = GetComponent<Rigidbody>().velocity;
@@ -30,6 +57,5 @@ public class Hero : MonoBehaviour
     }
     private void LateUpdate()
     {
-        IsMoving = false;
     }
 }
