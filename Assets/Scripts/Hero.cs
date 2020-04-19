@@ -15,12 +15,14 @@ public class Hero : MonoBehaviour
     const float groundedCastVerticalOffset = 0.4f;
 
     public bool IsMoving = false;
+
     public Vector2 move;
     
     public Vector2 lastMovement; // Last non null movement
 
     bool grounded = true;
 
+    public Animator animator;
     void Start()
     {
         
@@ -28,11 +30,30 @@ public class Hero : MonoBehaviour
 
     void OnMove(InputValue value)
     {
-        //IsMoving = true;
         move = value.Get<Vector2>();
 
         if (move.x != 0 || move.y != 0) {
             lastMovement = move.normalized;
+        }
+
+        animator.SetInteger("MoveLeftRight", 0);
+        animator.SetInteger("MoveUpDown", 0);
+
+        if (move.x > 0)
+        {
+            animator.SetInteger("MoveLeftRight", 1);
+        }
+        else if(move.x < 0)
+        {
+            animator.SetInteger("MoveLeftRight", -1);
+        }
+        if(move.y > 0)
+        {
+            animator.SetInteger("MoveUpDown", 1);
+        }
+        else if (move.y < 0)
+        {
+            animator.SetInteger("MoveUpDown", -1);
         }
     }
 
@@ -51,6 +72,15 @@ public class Hero : MonoBehaviour
         this.grounded = grounded;
 
 
+        if(move.x == 0)
+        {
+            animator.SetInteger("MoveLeftRight", 0);
+        }
+        if (move.y == 0)
+        {
+            animator.SetInteger("MoveUpDown", 0);
+        }
+
         GetComponent<SpriteRenderer>().sortingOrder = (int) -(transform.position.z * 1000);
 
         if (grounded) {
@@ -60,6 +90,5 @@ public class Hero : MonoBehaviour
     }
     private void LateUpdate()
     {
-        IsMoving = false;
     }
 }
