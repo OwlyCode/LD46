@@ -35,6 +35,21 @@ public class Hero : MonoBehaviour
 
     Vector3 windModifier = Vector3.zero;
 
+    GameObject mill;
+    GameObject helmet;
+    GameObject wall;
+    GameObject watchtower;
+    GameObject observatory;
+
+    void Start()
+    {
+        mill = transform.Find("Mill").gameObject;
+        helmet = transform.Find("Helmet").gameObject;
+        wall = transform.Find("Wall").gameObject;
+        watchtower = transform.Find("Watchtower").gameObject;
+        observatory = transform.Find("Observatory").gameObject;
+    }
+
     public void ApplyWind(Vector3 windModifier)
     {
         this.windModifier = windModifier;
@@ -128,6 +143,12 @@ public class Hero : MonoBehaviour
 
     void FixedUpdate()
     {
+        mill.SetActive(hasMill);
+        helmet.SetActive(hasHelmet);
+        wall.SetActive(hasWall);
+        watchtower.SetActive(hasWatchTower);
+        observatory.SetActive(hasObservatory);
+
         bool grounded = Physics.Raycast(transform.position + Vector3.up * groundedCastVerticalOffset, Vector3.down, groundedRaycastDistance, LayerMask.GetMask("Ground"));
 
         Debug.DrawRay(transform.position +  Vector3.up * groundedCastVerticalOffset, Vector3.down * groundedRaycastDistance, Color.yellow);
