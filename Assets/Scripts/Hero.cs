@@ -16,6 +16,10 @@ public class Hero : MonoBehaviour
 
     const float groundedCastVerticalOffset = 0.4f;
 
+    const float maxSickness = 100f;
+
+    const float sicknessDecay = 12f;
+
     public bool IsMoving = false;
 
     public Vector2 move;
@@ -25,6 +29,8 @@ public class Hero : MonoBehaviour
     public CinemachineVirtualCamera baseCamera;
 
     public CinemachineVirtualCamera watchtowerCamera;
+
+    public Color sicknessColor;
 
     bool grounded = true;
 
@@ -36,7 +42,7 @@ public class Hero : MonoBehaviour
     public bool hasMill = false;
     public bool hasWatchTower = false;
 
-    bool damagedHelmet = false;
+    public bool damagedHelmet = false;
 
     public Animator animator;
 
@@ -47,6 +53,11 @@ public class Hero : MonoBehaviour
     GameObject wall;
     GameObject watchtower;
     GameObject observatory;
+
+    float speedMultiplier = 1f;
+
+    float sickness = 0f;
+    bool sicknessIncreased = false;
 
     void Start()
     {
@@ -60,6 +71,18 @@ public class Hero : MonoBehaviour
     public void ApplyWind(Vector3 windModifier)
     {
         this.windModifier = windModifier;
+    }
+
+    public void ApplySpeedModifier(float speedMultiplier)
+    {
+        this.speedMultiplier = speedMultiplier;
+    }
+
+    public void IncreaseSickness(float amount)
+    {
+        this.sickness += amount;
+        sickness = Mathf.Clamp(sickness, 0, maxSickness);
+        sicknessIncreased = true;
     }
 
     public void LoseAllModules()
@@ -87,16 +110,16 @@ public class Hero : MonoBehaviour
             if (damagedHelmet) {
                 hasHelmet = false;
             } else {
-                hasHelmet = false;
+                damagedHelmet = true;
             }
 
             return;
         }
 
-        string[] modules = new []{hasObservatory ? "observatory" : "", hasWall ? "wall" : null, hasMill ? "mill" : "", hasWatchTower ? "watchtower": ""};
-        List<string> existingModules = (from item in modules where item != "" select item).ToList();
+        string[] modules = new []{hasObservatory ? "observatory" : null, hasWall ? "wall" : null, hasMill ? "mill" : null, hasWatchTower ? "watchtower": null};
+        List<string> existingModules = (from item in modules where item != null select item).ToList();
 
-        string destroyed = existingModules[Random.Range(0, existingModules.Count)];
+        string destroyed = existingModules[Random.Range(0, existingModules.Count - 1)];
 
         switch (destroyed) {
             case "observatory":
@@ -197,8 +220,36 @@ public class Hero : MonoBehaviour
         }
     }
 
+    void UpdateSickness()
+    {
+        if (hasAnyModule() && sickness == maxSickness) {
+            LoseModule();
+            sickness = 0f;
+        }
+
+        if (!sicknessIncreased) {
+            sickness -= sicknessDecay * Time.fixedDeltaTime;
+        }
+
+        sicknessIncreased = false;
+
+        sickness = Mathf.Clamp(sickness, 0, maxSickness);
+
+        Color color = Color.Lerp(Color.white, sicknessColor, sickness / maxSickness);
+
+        foreach(SpriteRenderer r in GetComponents<SpriteRenderer>()) {
+            r.color = color;
+        }
+
+        foreach(SpriteRenderer r in GetComponentsInChildren<SpriteRenderer>()) {
+            r.color = color;
+        }
+    }
+
     void FixedUpdate()
     {
+        UpdateSickness();
+
         mill.SetActive(hasMill);
         helmet.SetActive(hasHelmet);
         wall.SetActive(hasWall);
@@ -241,7 +292,7 @@ public class Hero : MonoBehaviour
 
         if (grounded && !dead) {
             Vector3 currentVelocity = GetComponent<Rigidbody>().velocity;
-            GetComponent<Rigidbody>().velocity = new Vector3(0f, currentVelocity.y, 0f) + new Vector3(move.x, 0f, move.y) * Time.fixedDeltaTime * speed;
+            GetComponent<Rigidbody>().velocity = new Vector3(0f, currentVelocity.y, 0f) + new Vector3(move.x, 0f, move.y) * Time.fixedDeltaTime * speed * speedMultiplier;
         }
 
         if (dead) {
