@@ -38,6 +38,21 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Moulin
+    uniqueID: 3702927703
+    locked: 0
+  - name: Tour
+    uniqueID: 1261384243
+    locked: 0
+  - name: Observatoire
+    uniqueID: 2644441545
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Enceinte
+    uniqueID: 2042516579
+    locked: 0
+  - name: Casque
+    uniqueID: 603363011
     locked: 0
