@@ -10,6 +10,12 @@ public class Hero : MonoBehaviour
     public Vector2 move;
 
     public Animator animator;
+
+    public bool hasObservatory = false;
+    public bool hasHelmet = false;
+    public bool hasWall = false;
+    public bool hasMill = false;
+    public bool hasWatchTower = false;
     void Start()
     {
         
