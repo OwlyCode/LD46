@@ -895,6 +895,7 @@ GameObject:
   - component: {fileID: 327667185}
   - component: {fileID: 327667186}
   - component: {fileID: 327667187}
+  - component: {fileID: 327667188}
   m_Layer: 0
   m_Name: Hero
   m_TagString: Untagged
@@ -962,7 +963,7 @@ Transform:
   m_GameObject: {fileID: 327667178}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 19.24, y: 2.0439153, z: 13.87}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
@@ -1022,10 +1023,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.15
-  m_Height: 0.8
+  m_Radius: 0.11525758
+  m_Height: 0.46720475
   m_Direction: 1
-  m_Center: {x: 0, y: 0.4, z: 0}
+  m_Center: {x: -0.0037094753, y: 0.3495253, z: 0}
 --- !u!114 &327667184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1107,6 +1108,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!135 &327667188
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 327667178}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.004
+  m_Center: {x: -0.012364944, y: 0.0225, z: 0}
 --- !u!1001 &332250983
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4613,7 +4627,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1356130694}
-  m_LocalRotation: {x: -0.42415535, y: -0.000000019601135, z: 0.000000041849233, w: -0.9055895}
+  m_LocalRotation: {x: -0.42415535, y: -0.000000019601131, z: 0.000000041849233, w: -0.9055895}
   m_LocalPosition: {x: 19.24, y: 8.043915, z: 8.87}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
