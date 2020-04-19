@@ -1691,6 +1691,7 @@ GameObject:
   - component: {fileID: 454046067}
   - component: {fileID: 454046066}
   - component: {fileID: 454046065}
+  - component: {fileID: 454046068}
   m_Layer: 0
   m_Name: Observatoire
   m_TagString: Untagged
@@ -1753,8 +1754,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1650525751
-  m_SortingLayer: -1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 4386544501578418432, guid: 20bbd5fff817b61479debe7335e67ac7,
     type: 3}
@@ -1782,6 +1783,19 @@ Transform:
   m_Father: {fileID: 327667180}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &454046068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 454046064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8aa052108727d474dbe946f5aee316bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isInFront: 0
 --- !u!4 &479829384 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 632657486609446812, guid: 850c48bc29380c04f8728a70eeea01bf,
@@ -4090,6 +4104,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1235618776}
   - component: {fileID: 1235618777}
+  - component: {fileID: 1235618778}
   m_Layer: 0
   m_Name: Enceinte
   m_TagString: Untagged
@@ -4147,8 +4162,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 2042516579
-  m_SortingLayer: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 9ce3631c3f81b7e41b3efb071cc4b57a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -4161,6 +4176,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1235618778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1235618775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8aa052108727d474dbe946f5aee316bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isInFront: 1
 --- !u!4 &1240620636 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6928300104947426170, guid: 72672b429dca6bc4eb7790fdd7185908,
@@ -5319,6 +5347,7 @@ GameObject:
   - component: {fileID: 1772075149}
   - component: {fileID: 1772075148}
   - component: {fileID: 1772075147}
+  - component: {fileID: 1772075150}
   m_Layer: 0
   m_Name: Tour
   m_TagString: Untagged
@@ -5381,8 +5410,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1261384243
-  m_SortingLayer: -2
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 6304826840174917774, guid: 1f5f4fd0b5242624a9d540feac5b7814,
     type: 3}
@@ -5410,6 +5439,19 @@ Transform:
   m_Father: {fileID: 327667180}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1772075150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1772075146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8aa052108727d474dbe946f5aee316bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isInFront: 0
 --- !u!1 &1774954649
 GameObject:
   m_ObjectHideFlags: 0
@@ -5421,6 +5463,7 @@ GameObject:
   - component: {fileID: 1774954652}
   - component: {fileID: 1774954651}
   - component: {fileID: 1774954650}
+  - component: {fileID: 1774954653}
   m_Layer: 0
   m_Name: Moulin
   m_TagString: Untagged
@@ -5483,8 +5526,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -592039593
-  m_SortingLayer: -3
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -5395677699576042285, guid: f9c35cd84e33323478f6515c16afde56,
     type: 3}
@@ -5512,6 +5555,19 @@ Transform:
   m_Father: {fileID: 327667180}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1774954653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1774954649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8aa052108727d474dbe946f5aee316bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isInFront: 0
 --- !u!1001 &1784049217
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6578,6 +6634,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2086091517}
   - component: {fileID: 2086091518}
+  - component: {fileID: 2086091519}
   m_Layer: 0
   m_Name: Casque
   m_TagString: Untagged
@@ -6635,8 +6692,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 603363011
-  m_SortingLayer: 2
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: acc0b202955b36c4eb6de791f5a0d895, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -6649,6 +6706,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2086091519
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2086091516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8aa052108727d474dbe946f5aee316bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isInFront: 1
 --- !u!1001 &2089572791
 PrefabInstance:
   m_ObjectHideFlags: 0
