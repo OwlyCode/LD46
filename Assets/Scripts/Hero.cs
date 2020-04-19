@@ -119,9 +119,14 @@ public class Hero : MonoBehaviour
         return hasObservatory || hasHelmet || hasWall || hasMill || hasWatchTower;
     }
 
-    void OnDrown()
+    void OnWaterTouch()
     {
+        if (hasWall) {
+            return;
+        }
+
         dead = true;
+        GameObject.Find("LevelLoader").GetComponent<LevelLoader>().Reboot(2f);
 
         foreach(Collider c in GetComponents<Collider>()) {
             c.enabled = false;
@@ -240,7 +245,7 @@ public class Hero : MonoBehaviour
         }
 
         if (dead) {
-            GetComponent<Rigidbody>().velocity = new Vector3(lastMovement.x * 0.5f, -0.3f, lastMovement.y * 0.5f);
+            GetComponent<Rigidbody>().velocity = new Vector3(lastMovement.x * 0.8f, -0.3f, lastMovement.y * 0.8f);
 
             if (transform.position.y < -0.5f) {
                 GetComponent<Rigidbody>().velocity = Vector3.zero;

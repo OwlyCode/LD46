@@ -15,7 +15,7 @@ public class DrowningCheck : MonoBehaviour
         GameObject source = collision.collider.gameObject;
 
         if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Player")) {
-            source.SendMessage("OnDrown");
+            source.SendMessage("OnWaterTouch");
         }
     }
 
