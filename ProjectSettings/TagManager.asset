@@ -56,3 +56,6 @@ TagManager:
   - name: Casque
     uniqueID: 603363011
     locked: 0
+  - name: Lance
+    uniqueID: 2448099831
+    locked: 0
