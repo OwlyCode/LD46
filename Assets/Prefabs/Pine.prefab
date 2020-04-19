@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1197848765955462125}
   - component: {fileID: 1197848765955462123}
   - component: {fileID: 3952515255493540905}
+  - component: {fileID: 2912051894029372814}
   m_Layer: 0
   m_Name: Pine
   m_TagString: Untagged
@@ -133,5 +134,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 123572b62c17cfd46afa98c916e72bc6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2912051894029372814
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1197848765955462126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d32f4cf4673cecd42aadf9ec47100a6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
