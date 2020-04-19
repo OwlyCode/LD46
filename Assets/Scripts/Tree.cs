@@ -19,7 +19,24 @@ public class Tree : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        excitation = 20f;
+        // A remplacer par le check de module
+        if (true) {
+            Physics.IgnoreCollision(GetComponent<Collider>(), collision.collider);
+            StartCoroutine("ForgetCollisionIgnore", collision);
+        }
+
+        excitation = 80f;
+    }
+
+    IEnumerator ForgetCollisionIgnore(Collision collision) 
+    {
+        while (Vector3.Distance(collision.collider.transform.position, transform.position) < 0.8f) {
+            yield return new WaitForSeconds(0.1f);
+        }
+
+        Physics.IgnoreCollision(GetComponent<Collider>(), collision.collider, false);
+
+        yield return null;
     }
 
     // Update is called once per frame

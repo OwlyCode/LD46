@@ -10,7 +10,9 @@ public class Hero : MonoBehaviour
     const float jumpUpForce = 200f;
     const float jumpSideForce = 70f;
 
-    const float groundedRaycastDistance = 0.4f;
+    const float groundedRaycastDistance = 0.8f;
+
+    const float groundedCastVerticalOffset = 0.4f;
 
     public bool IsMoving = false;
     public Vector2 move;
@@ -36,7 +38,9 @@ public class Hero : MonoBehaviour
 
     void FixedUpdate()
     {
-        bool grounded = Physics.Raycast(transform.position, Vector3.down, 0.3f, LayerMask.GetMask("Ground"));
+        bool grounded = Physics.Raycast(transform.position + Vector3.up * groundedCastVerticalOffset, Vector3.down, groundedRaycastDistance, LayerMask.GetMask("Ground"));
+
+        Debug.DrawRay(transform.position +  Vector3.up * groundedCastVerticalOffset, Vector3.down * groundedRaycastDistance, Color.yellow);
 
         if (grounded == false && this.grounded)
         {
