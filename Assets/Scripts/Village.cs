@@ -22,8 +22,13 @@ public class Village : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Upgrade zone");
-    }    
+        other.gameObject.SendMessage("OnFadeOutMusic");
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        other.gameObject.SendMessage("OnFadeInMusic");
+    } 
 
     // Update is called once per frame
     void Update()

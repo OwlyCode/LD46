@@ -12,7 +12,6 @@ public class Tree : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GetComponent<SpriteRenderer>().sortingOrder = (int) -(transform.position.z * 1000);
         offset = Random.Range(0f, 10f);
         excitation = 0f;        
     }
