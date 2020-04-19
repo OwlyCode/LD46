@@ -24,7 +24,11 @@ public class Hero : MonoBehaviour
 
     public CinemachineVirtualCamera baseCamera;
 
+    public CinemachineVirtualCamera watchtowerCamera;
+
     bool grounded = true;
+
+    bool dead = false;
 
     public bool hasObservatory = false;
     public bool hasHelmet = false;
@@ -115,6 +119,19 @@ public class Hero : MonoBehaviour
         return hasObservatory || hasHelmet || hasWall || hasMill || hasWatchTower;
     }
 
+    void OnDrown()
+    {
+        dead = true;
+
+        foreach(Collider c in GetComponents<Collider>()) {
+            c.enabled = false;
+        }
+
+        foreach(Collider c in GetComponentsInChildren<Collider>()) {
+            c.enabled = false;
+        }
+    }
+
     void OnToggleHelmet()
     {
         hasHelmet = true;
@@ -143,6 +160,11 @@ public class Hero : MonoBehaviour
 
     void OnMove(InputValue value)
     {
+        if (dead) {
+            move = Vector2.zero;
+            return;
+        }
+
         move = value.Get<Vector2>();
 
         if (move.x != 0 || move.y != 0) {
@@ -184,7 +206,7 @@ public class Hero : MonoBehaviour
 
         Debug.DrawRay(transform.position +  Vector3.up * groundedCastVerticalOffset, Vector3.down * groundedRaycastDistance, Color.yellow);
 
-        if (!grounded && this.grounded)
+        if (!grounded && this.grounded && !dead)
         {
             GetComponent<Rigidbody>().velocity = Vector3.zero;
             GetComponent<Rigidbody>().AddForce(new Vector3(lastMovement.x * jumpSideForce, jumpUpForce, lastMovement.y * jumpSideForce));
@@ -212,12 +234,18 @@ public class Hero : MonoBehaviour
 
         GetComponent<SpriteRenderer>().sortingOrder = (int) -(transform.position.z * 1000);
 
-        if (grounded) {
+        if (grounded && !dead) {
             Vector3 currentVelocity = GetComponent<Rigidbody>().velocity;
             GetComponent<Rigidbody>().velocity = new Vector3(0f, currentVelocity.y, 0f) + new Vector3(move.x, 0f, move.y) * Time.fixedDeltaTime * speed;
         }
-    }
-    private void LateUpdate()
-    {
+
+        if (dead) {
+            GetComponent<Rigidbody>().velocity = new Vector3(lastMovement.x * 0.5f, -0.3f, lastMovement.y * 0.5f);
+
+            if (transform.position.y < -0.5f) {
+                GetComponent<Rigidbody>().velocity = Vector3.zero;
+                transform.position = new Vector3(transform.position.x, -0.5f, transform.position.z);
+            }
+        }
     }
 }
