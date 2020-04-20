@@ -20,6 +20,8 @@ public class Hero : MonoBehaviour
 
     const float sicknessDecay = 12f;
 
+    const float knockbackStrength = 150f;
+
     public bool IsMoving = false;
 
     public Vector2 move;
@@ -33,6 +35,8 @@ public class Hero : MonoBehaviour
     public Color sicknessColor;
 
     bool grounded = true;
+
+    public bool knockback = false;
 
     bool dead = false;
 
@@ -100,15 +104,29 @@ public class Hero : MonoBehaviour
         hasWatchTower = false;
     }
 
-    public void HordeDamage()
+    public void HordeDamage(Vector3 ennemyVelocity)
     {
         if (!hasAnyModule()) {
-            // TODO: gameover ! 
+            Die();
 
             return;
         }
 
+        knockback = true;
+        StartCoroutine(KnockbackCooldown(0.5f));
+
+        GetComponent<Rigidbody>().velocity = Vector3.zero;
+        GetComponent<Rigidbody>().AddForce(new Vector3(0f, knockbackStrength * 2f, 0f));
+        GetComponent<Rigidbody>().AddForce(ennemyVelocity.normalized * knockbackStrength);
+
         LoseModule();
+    }
+
+    IEnumerator KnockbackCooldown(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+
+        knockback = false;
     }
 
     public void LoseModule()
@@ -149,14 +167,17 @@ public class Hero : MonoBehaviour
         return hasObservatory || hasHelmet || hasWall || hasMill || hasWatchTower;
     }
 
+    void Die()
+    {
+        dead = true;
+        GameObject.Find("LevelLoader").GetComponent<LevelLoader>().Reboot(2f);
+    }
+
     void OnWaterTouch()
     {
         if (hasWall) {
             return;
         }
-
-        dead = true;
-        GameObject.Find("LevelLoader").GetComponent<LevelLoader>().Reboot(2f);
 
         foreach(Collider c in GetComponents<Collider>()) {
             c.enabled = false;
@@ -165,6 +186,8 @@ public class Hero : MonoBehaviour
         foreach(Collider c in GetComponentsInChildren<Collider>()) {
             c.enabled = false;
         }
+
+        Die();
     }
 
     void OnToggleHelmet()
@@ -269,7 +292,7 @@ public class Hero : MonoBehaviour
 
         Debug.DrawRay(transform.position +  Vector3.up * groundedCastVerticalOffset, Vector3.down * groundedRaycastDistance, Color.yellow);
 
-        if (!grounded && this.grounded && !dead)
+        if (!grounded && this.grounded && !dead && !knockback)
         {
             GetComponent<Rigidbody>().velocity = Vector3.zero;
             GetComponent<Rigidbody>().AddForce(new Vector3(lastMovement.x * jumpSideForce, jumpUpForce, lastMovement.y * jumpSideForce));
@@ -297,7 +320,7 @@ public class Hero : MonoBehaviour
 
         GetComponent<SpriteRenderer>().sortingOrder = (int) -(transform.position.z * 1000);
 
-        if (grounded && !dead) {
+        if (grounded && !dead && !knockback) {
             Vector3 currentVelocity = GetComponent<Rigidbody>().velocity;
             GetComponent<Rigidbody>().velocity = new Vector3(0f, currentVelocity.y, 0f) + new Vector3(move.x, 0f, move.y) * Time.fixedDeltaTime * speed * speedMultiplier;
         }
