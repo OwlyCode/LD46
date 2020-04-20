@@ -38,7 +38,9 @@ public class Hero : MonoBehaviour
 
     public bool knockback = false;
 
-    bool dead = false;
+    public bool dead = false;
+
+    public bool drowning = false;
 
     public bool immune = false;
 
@@ -68,6 +70,8 @@ public class Hero : MonoBehaviour
     float sickness = 0f;
     bool sicknessIncreased = false;
 
+    IEnumerator blinking;
+
     void Start()
     {
         mill = transform.Find("Mill").gameObject;
@@ -75,6 +79,8 @@ public class Hero : MonoBehaviour
         wall = transform.Find("Wall").gameObject;
         watchtower = transform.Find("Watchtower").gameObject;
         observatory = transform.Find("Observatory").gameObject;
+
+        blinking = ImmuneBlink(0.2f);
     }
 
     public void ApplyWind(Vector3 windModifier)
@@ -117,20 +123,23 @@ public class Hero : MonoBehaviour
 
     public void HordeDamage(Vector3 ennemyVelocity)
     {
-        if (immune || knockback) {
+        if (immune || knockback || dead) {
             return;
         }
 
         if (!hasAnyModule()) {
             Die();
-
-            return;
+        } else {
+            LoseModule();
         }
-
-        LoseModule();
 
         knockback = true;
         immune = true;
+
+        if (!dead) {
+            StartCoroutine(blinking);
+        }
+
         StartCoroutine(KnockbackCooldown(1f));
         StartCoroutine(ImmunityCooldown(3f));
         SetPhysicMaterial(slippery);
@@ -163,6 +172,7 @@ public class Hero : MonoBehaviour
     {
         yield return new WaitForSeconds(duration);
 
+        StopCoroutine(blinking);
         immune = false;
     }
 
@@ -216,11 +226,18 @@ public class Hero : MonoBehaviour
             return;
         }
 
+        GetComponent<AutoRotate>().enabled = false;
+
+        transform.rotation = Quaternion.Euler(90f, 15f, 0f);
+        SetColor(Color.gray);
+
         SendMessage("OnFadeOutMusic");
 
         dead = true;
         transform.Find("SoundEffects").GetComponent<KeepSounds>().PlayDead();
         GameObject.Find("LevelLoader").GetComponent<LevelLoader>().Reboot(2f);
+
+        transform.position = transform.position + Vector3.up * 0.1f;
     }
 
     void OnWaterTouch()
@@ -228,6 +245,8 @@ public class Hero : MonoBehaviour
         if (hasWall) {
             return;
         }
+
+        drowning = true;
 
         foreach(Collider c in GetComponents<Collider>()) {
             c.enabled = false;
@@ -320,15 +339,28 @@ public class Hero : MonoBehaviour
 
         sickness = Mathf.Clamp(sickness, 0, maxSickness);
 
-        Color color = Color.Lerp(Color.white, sicknessColor, sickness / maxSickness);
+        SetColor(Color.Lerp(Color.white, sicknessColor, sickness / maxSickness));
+    }
 
+    IEnumerator ImmuneBlink(float duration)
+    {
+        while (immune) {
+            SetColor(Color.gray);
+            yield return new WaitForSeconds(duration);
+            SetColor(Color.white);
+            yield return new WaitForSeconds(duration);
+        }
+    }
+
+    void SetColor(Color color)
+    {
         foreach(SpriteRenderer r in GetComponents<SpriteRenderer>()) {
             r.color = color;
         }
 
         foreach(SpriteRenderer r in GetComponentsInChildren<SpriteRenderer>()) {
             r.color = color;
-        }
+        }   
     }
 
     void UpdateTreeCollision()
@@ -346,9 +378,11 @@ public class Hero : MonoBehaviour
 
     void FixedUpdate()
     {
-        UpdateTreeCollision();
-        UpdateSickness();
-        CheckVictory();
+        if (!dead) {
+            UpdateTreeCollision();
+            UpdateSickness();
+            CheckVictory();
+        }
 
         mill.SetActive(hasMill);
         helmet.SetActive(hasHelmet);
@@ -397,7 +431,7 @@ public class Hero : MonoBehaviour
             GetComponent<Rigidbody>().velocity = new Vector3(0f, currentVelocity.y, 0f) + new Vector3(move.x, 0f, move.y) * Time.fixedDeltaTime * speed * speedMultiplier;
         }
 
-        if (dead) {
+        if (dead && drowning) {
             GetComponent<Rigidbody>().velocity = new Vector3(lastMovement.x * 0.8f, -0.3f, lastMovement.y * 0.8f);
 
             if (transform.position.y < -0.5f) {

@@ -24440,7 +24440,7 @@ PrefabInstance:
     - target: {fileID: 780529855484742254, guid: 23eff7e993e3dc5489de2addcfa44ad5,
         type: 3}
       propertyPath: hasObservatory
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 780529855484742254, guid: 23eff7e993e3dc5489de2addcfa44ad5,
         type: 3}

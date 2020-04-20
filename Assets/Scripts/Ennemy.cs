@@ -44,7 +44,9 @@ public class Ennemy : MonoBehaviour
 
         GetComponent<NavMeshAgent>().SetDestination(keep.transform.position);
 
-        if (keep.GetComponent<Hero>().knockback) {
+        Hero h = keep.GetComponent<Hero>();
+
+        if (h.knockback || h.dead) {
             GetComponent<NavMeshAgent>().SetDestination(transform.position);
         }
     }
