@@ -8,6 +8,8 @@ public class KeepSounds : MonoBehaviour
     public AudioClip upgraded;
     public AudioClip dead;
 
+    public AudioClip jump;
+
     public void PlayDamaged()
     {
         GetComponent<AudioSource>().PlayOneShot(damaged);
@@ -21,5 +23,10 @@ public class KeepSounds : MonoBehaviour
     public void PlayDead()
     {
         GetComponent<AudioSource>().PlayOneShot(dead);
+    }
+
+    public void PlayJump()
+    {
+        GetComponent<AudioSource>().PlayOneShot(jump);
     }
 }
