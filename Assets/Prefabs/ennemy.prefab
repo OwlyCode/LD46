@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3961008179813882110}
   - component: {fileID: 170030256335257775}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Spear02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -91,7 +91,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6719558494187667644}
   - component: {fileID: 5808375211590039369}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: axe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -172,7 +172,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6039583135877684009}
   - component: {fileID: 379629199649344510}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: rotator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -218,7 +218,7 @@ GameObject:
   - component: {fileID: 2787184767542933345}
   - component: {fileID: 7924997102569929527}
   - component: {fileID: 7440160339806530100}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: cloud
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -335,7 +335,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2030666713934372094}
   - component: {fileID: 7454872860673381932}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Spear01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -418,7 +418,7 @@ GameObject:
   - component: {fileID: 6374590931884331145}
   - component: {fileID: 6374590931884331147}
   - component: {fileID: 5978837070409227560}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: ennemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -504,7 +504,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2435121215300461727}
   - component: {fileID: 57100101027657336}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Spear_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}

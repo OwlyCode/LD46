@@ -142,6 +142,7 @@ public class Hero : MonoBehaviour
 
         knockback = true;
         immune = true;
+        Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Horde"), true);
 
         if (!dead) {
             StartCoroutine(blinking);
@@ -181,6 +182,8 @@ public class Hero : MonoBehaviour
 
         StopCoroutine(blinking);
         immune = false;
+
+        Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Horde"), false);
     }
 
     public void LoseModule()
