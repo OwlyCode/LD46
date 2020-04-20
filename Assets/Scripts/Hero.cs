@@ -7,6 +7,8 @@ using Cinemachine;
 
 public class Hero : MonoBehaviour
 {
+    public GameObject puffle;
+
     const float speed = 6f;
 
     const float jumpUpForce = 250f;
@@ -274,32 +276,53 @@ public class Hero : MonoBehaviour
     void OnToggleHelmet()
     {
         transform.Find("SoundEffects").GetComponent<KeepSounds>().PlayUpgraded();
-        hasHelmet = true;
-        damagedHelmet = false;
+
+        if (!hasHelmet) {
+            Instantiate(puffle, transform.position + Vector3.up, Quaternion.Inverse(transform.rotation), transform);
+        
+            hasHelmet = true;
+            damagedHelmet = false;
+        }
     }
 
     void OnToggleObservatory()
     {
-        transform.Find("SoundEffects").GetComponent<KeepSounds>().PlayUpgraded();
-        hasObservatory = true;
+        if (!hasObservatory) {
+            Instantiate(puffle, transform.position + Vector3.up, Quaternion.Inverse(transform.rotation), transform);
+
+            transform.Find("SoundEffects").GetComponent<KeepSounds>().PlayUpgraded();
+            hasObservatory = true;
+        }
     }
 
     void OnToggleWall()
     {
-        transform.Find("SoundEffects").GetComponent<KeepSounds>().PlayUpgraded();
-        hasWall = true;
+        if (!hasWall) {
+            Instantiate(puffle, transform.position + Vector3.up, Quaternion.Inverse(transform.rotation), transform);
+
+            transform.Find("SoundEffects").GetComponent<KeepSounds>().PlayUpgraded();
+            hasWall = true;
+        }
     }
 
     void OnToggleMill()
     {
-        transform.Find("SoundEffects").GetComponent<KeepSounds>().PlayUpgraded();
-        hasMill = true;
+        if (!hasMill) {
+            Instantiate(puffle, transform.position + Vector3.up, Quaternion.Inverse(transform.rotation), transform);
+
+            transform.Find("SoundEffects").GetComponent<KeepSounds>().PlayUpgraded();
+            hasMill = true;
+        }
     }
 
     void OnToggleWatchtower()
     {
-        transform.Find("SoundEffects").GetComponent<KeepSounds>().PlayUpgraded();
-        hasWatchTower = true;
+        if(!hasWatchTower) {
+            Instantiate(puffle, transform.position + Vector3.up, Quaternion.Inverse(transform.rotation), transform);
+
+            transform.Find("SoundEffects").GetComponent<KeepSounds>().PlayUpgraded();
+            hasWatchTower = true;
+        }
     }
 
     void OnMove(InputValue value)
