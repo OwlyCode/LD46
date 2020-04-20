@@ -11,10 +11,15 @@ public class LevelLoader : MonoBehaviour
 
     public void Reboot(float delay = 0f)
     {
-        StartCoroutine(LoadLevel(delay));
+        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().name, delay));
     }
 
-    IEnumerator LoadLevel (float delay = 0f)
+    public void Victory(float delay = 0f)
+    {
+        StartCoroutine(LoadLevel("Credits", 0f));
+    }
+
+    IEnumerator LoadLevel (string level, float delay = 0f)
     {
         yield return new WaitForSeconds(delay);
 
@@ -22,6 +27,6 @@ public class LevelLoader : MonoBehaviour
 
         yield return new WaitForSeconds(transitionTime);
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        SceneManager.LoadScene(level);
     }
 }

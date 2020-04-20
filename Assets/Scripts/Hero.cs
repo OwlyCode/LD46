@@ -320,10 +320,19 @@ public class Hero : MonoBehaviour
         Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Tree"), !hasAnyModule());
     }
 
+    void CheckVictory()
+    {
+        if (hasWall && hasObservatory && hasWatchTower && hasHelmet && hasMill) {
+            immune = true;
+            GameObject.Find("LevelLoader").GetComponent<LevelLoader>().Victory(2f);
+        }
+    }
+
     void FixedUpdate()
     {
         UpdateTreeCollision();
         UpdateSickness();
+        CheckVictory();
 
         mill.SetActive(hasMill);
         helmet.SetActive(hasHelmet);
