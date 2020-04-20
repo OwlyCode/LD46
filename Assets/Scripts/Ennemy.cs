@@ -10,6 +10,12 @@ public class Ennemy : MonoBehaviour
 
     GameObject keep;
 
+    float baseSpeed;
+
+    float speedUpDistance = 10f;
+
+    float speedUpRatio = 2f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +23,7 @@ public class Ennemy : MonoBehaviour
         velocity = Vector3.zero;
         previousPosition = transform.position;
 
+        baseSpeed = GetComponent<NavMeshAgent>().speed;
         GetComponentInChildren<Animator>().SetFloat("Offset", Random.Range(0.0f, 1.0f));
     }
 
@@ -48,6 +55,14 @@ public class Ennemy : MonoBehaviour
 
         if (h.knockback || h.dead) {
             GetComponent<NavMeshAgent>().SetDestination(transform.position);
+        }
+
+        float distance = Vector3.Distance(keep.transform.position, transform.position);
+
+        if (distance > speedUpDistance) {
+            GetComponent<NavMeshAgent>().speed = baseSpeed * speedUpRatio;
+        } else {
+            GetComponent<NavMeshAgent>().speed = baseSpeed;
         }
     }
 }
