@@ -22,6 +22,9 @@ public class Hero : MonoBehaviour
 
     const float knockbackStrength = 220f;
 
+    const float sicknessIncrement = 6f;
+
+
     public bool IsMoving = false;
 
     public Vector2 move;
@@ -72,6 +75,8 @@ public class Hero : MonoBehaviour
 
     IEnumerator blinking;
 
+    public int marshCount = 0;
+
     void Start()
     {
         mill = transform.Find("Mill").gameObject;
@@ -93,11 +98,13 @@ public class Hero : MonoBehaviour
         this.speedMultiplier = speedMultiplier;
     }
 
-    public void IncreaseSickness(float amount)
+    public void HandleSickness()
     {
-        this.sickness += amount;
-        sickness = Mathf.Clamp(sickness, 0, maxSickness);
-        sicknessIncreased = true;
+        if (marshCount > 0) {
+            this.sickness += sicknessIncrement * Time.deltaTime;
+            sickness = Mathf.Clamp(sickness, 0, maxSickness);
+            sicknessIncreased = true;
+        }
     }
 
     public void LoseAllModules()
@@ -376,9 +383,20 @@ public class Hero : MonoBehaviour
         }
     }
 
+    void IncreaseMarsh()
+    {
+        marshCount++;
+    }
+
+    void DecreaseMarsh()
+    {
+        marshCount--;
+    }
+
     void FixedUpdate()
     {
         if (!dead) {
+            HandleSickness();
             UpdateTreeCollision();
             UpdateSickness();
             CheckVictory();
