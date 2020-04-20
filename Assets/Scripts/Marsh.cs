@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class Marsh : MonoBehaviour
 {
-    const float slowFactor = 0.5f;
-
-    const float sicknessIncrement = 6f;
+    const float slowFactor = 0.7f;
 
     void OnTriggerEnter(Collider other)
     {

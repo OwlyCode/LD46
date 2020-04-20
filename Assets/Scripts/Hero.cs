@@ -24,7 +24,7 @@ public class Hero : MonoBehaviour
 
     const float knockbackStrength = 220f;
 
-    const float sicknessIncrement = 6f;
+    const float sicknessIncrement = 25f;
 
 
     public bool IsMoving = false;

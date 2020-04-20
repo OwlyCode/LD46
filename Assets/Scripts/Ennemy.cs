@@ -22,7 +22,7 @@ public class Ennemy : MonoBehaviour
 
     const float midspeed = 6f;
 
-    const float onKeep = 4.0f;
+    const float onKeep = 4f;
 
     // Start is called before the first frame update
     void Start()
