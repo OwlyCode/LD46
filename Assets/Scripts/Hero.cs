@@ -340,11 +340,11 @@ public class Hero : MonoBehaviour
         animator.SetInteger("MoveLeftRight", 0);
         animator.SetInteger("MoveUpDown", 0);
 
-        if (move.x > 0)
+        if (move.x > 0.1f)
         {
             animator.SetInteger("MoveLeftRight", 1);
         }
-        else if(move.x < 0)
+        else if(move.x < -0.1f)
         {
             animator.SetInteger("MoveLeftRight", -1);
         }
