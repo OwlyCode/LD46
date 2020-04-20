@@ -397,11 +397,6 @@ public class Hero : MonoBehaviour
         }   
     }
 
-    void UpdateTreeCollision()
-    {
-        Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Tree"), !hasAnyModule());
-    }
-
     void CheckVictory()
     {
         if (hasWall && hasObservatory && hasWatchTower && hasHelmet && hasMill) {
@@ -424,7 +419,6 @@ public class Hero : MonoBehaviour
     {
         if (!dead) {
             HandleSickness();
-            UpdateTreeCollision();
             UpdateSickness();
             CheckVictory();
         }
