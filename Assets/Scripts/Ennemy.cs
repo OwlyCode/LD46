@@ -8,9 +8,12 @@ public class Ennemy : MonoBehaviour
     public Vector3 velocity;
     Vector3 previousPosition;
 
+    GameObject keep;
+
     // Start is called before the first frame update
     void Start()
     {
+        keep = GameObject.Find("Keep");
         velocity = Vector3.zero;
         previousPosition = transform.position;
 
@@ -26,6 +29,10 @@ public class Ennemy : MonoBehaviour
 
         GetComponentInChildren<SpriteRenderer>().sortingOrder = (int) -(transform.position.z * 100);   
 
-        GetComponent<NavMeshAgent>().SetDestination(GameObject.Find("Keep").transform.position);
+        GetComponent<NavMeshAgent>().SetDestination(keep.transform.position);
+
+        if (keep.GetComponent<Hero>().knockback) {
+            GetComponent<NavMeshAgent>().SetDestination(transform.position);
+        }
     }
 }

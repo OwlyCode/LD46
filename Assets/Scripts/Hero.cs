@@ -40,6 +40,8 @@ public class Hero : MonoBehaviour
 
     bool dead = false;
 
+    public bool immune = false;
+
     public bool hasObservatory = false;
     public bool hasHelmet = false;
     public bool hasWall = false;
@@ -94,6 +96,10 @@ public class Hero : MonoBehaviour
 
     public void LoseAllModules()
     {
+        if (immune) {
+            return;
+        }
+
         hasObservatory = false;
 
         if (hasHelmet && !damagedHelmet) {
@@ -119,15 +125,17 @@ public class Hero : MonoBehaviour
             return;
         }
 
+        LoseModule();
+
         knockback = true;
-        StartCoroutine(KnockbackCooldown(0.5f));
+        immune = true;
+        StartCoroutine(KnockbackCooldown(1f));
+        StartCoroutine(ImmunityCooldown(3f));
         SetPhysicMaterial(slippery);
 
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         GetComponent<Rigidbody>().AddForce(new Vector3(0f, knockbackStrength, 0f));
         GetComponent<Rigidbody>().AddForce(ennemyVelocity.normalized * knockbackStrength * 2f);
-
-        LoseModule();
     }
 
     void SetPhysicMaterial(PhysicMaterial material)
@@ -149,8 +157,19 @@ public class Hero : MonoBehaviour
         knockback = false;
     }
 
+    IEnumerator ImmunityCooldown(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+
+        immune = false;
+    }
+
     public void LoseModule()
     {
+        if (immune) {
+            return;
+        }
+
         if (hasHelmet) {
             if (damagedHelmet) {
                 hasHelmet = false;
@@ -324,10 +343,12 @@ public class Hero : MonoBehaviour
             GetComponent<Rigidbody>().AddForce(new Vector3(lastMovement.x * jumpSideForce, jumpUpForce, lastMovement.y * jumpSideForce));
         }
 
-        GetComponent<Rigidbody>().AddForce(windModifier);
+        if(!knockback && grounded) {
+            GetComponent<Rigidbody>().AddForce(windModifier);
+        }
 
 
-        if (grounded && !this.grounded && !hasMill) {
+        if (grounded && !this.grounded && !hasMill && !dead) {
             // Fall
             LoseAllModules();
         }
