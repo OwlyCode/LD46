@@ -7,7 +7,9 @@ using Cinemachine;
 
 public class Hero : MonoBehaviour
 {
-    const float speed = 300f;
+    public GameObject puffle;
+
+    const float speed = 6f;
 
     const float jumpUpForce = 250f;
     const float jumpSideForce = 150f;
@@ -21,6 +23,9 @@ public class Hero : MonoBehaviour
     const float sicknessDecay = 12f;
 
     const float knockbackStrength = 220f;
+
+    const float sicknessIncrement = 6f;
+
 
     public bool IsMoving = false;
 
@@ -72,6 +77,8 @@ public class Hero : MonoBehaviour
 
     IEnumerator blinking;
 
+    public int marshCount = 0;
+
     void Start()
     {
         mill = transform.Find("Mill").gameObject;
@@ -93,11 +100,13 @@ public class Hero : MonoBehaviour
         this.speedMultiplier = speedMultiplier;
     }
 
-    public void IncreaseSickness(float amount)
+    public void HandleSickness()
     {
-        this.sickness += amount;
-        sickness = Mathf.Clamp(sickness, 0, maxSickness);
-        sicknessIncreased = true;
+        if (marshCount > 0) {
+            this.sickness += sicknessIncrement * Time.deltaTime;
+            sickness = Mathf.Clamp(sickness, 0, maxSickness);
+            sicknessIncreased = true;
+        }
     }
 
     public void LoseAllModules()
@@ -135,6 +144,7 @@ public class Hero : MonoBehaviour
 
         knockback = true;
         immune = true;
+        Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Horde"), true);
 
         if (!dead) {
             StartCoroutine(blinking);
@@ -174,6 +184,8 @@ public class Hero : MonoBehaviour
 
         StopCoroutine(blinking);
         immune = false;
+
+        Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Horde"), false);
     }
 
     public void LoseModule()
@@ -220,7 +232,7 @@ public class Hero : MonoBehaviour
         return hasObservatory || hasHelmet || hasWall || hasMill || hasWatchTower;
     }
 
-    void Die()
+    void Die(bool flip = true)
     {
         if (dead) {
             return;
@@ -228,8 +240,10 @@ public class Hero : MonoBehaviour
 
         GetComponent<AutoRotate>().enabled = false;
 
-        transform.rotation = Quaternion.Euler(90f, 15f, 0f);
-        SetColor(Color.gray);
+        if (flip) {
+            transform.rotation = Quaternion.Euler(90f, 15f, 0f);
+            SetColor(Color.gray);
+        }
 
         SendMessage("OnFadeOutMusic");
 
@@ -256,38 +270,59 @@ public class Hero : MonoBehaviour
             c.enabled = false;
         }
 
-        Die();
+        Die(false);
     }
 
     void OnToggleHelmet()
     {
         transform.Find("SoundEffects").GetComponent<KeepSounds>().PlayUpgraded();
-        hasHelmet = true;
-        damagedHelmet = false;
+
+        if (!hasHelmet) {
+            Instantiate(puffle, transform.position + Vector3.up, Quaternion.Inverse(transform.rotation), transform);
+        
+            hasHelmet = true;
+            damagedHelmet = false;
+        }
     }
 
     void OnToggleObservatory()
     {
-        transform.Find("SoundEffects").GetComponent<KeepSounds>().PlayUpgraded();
-        hasObservatory = true;
+        if (!hasObservatory) {
+            Instantiate(puffle, transform.position + Vector3.up, Quaternion.Inverse(transform.rotation), transform);
+
+            transform.Find("SoundEffects").GetComponent<KeepSounds>().PlayUpgraded();
+            hasObservatory = true;
+        }
     }
 
     void OnToggleWall()
     {
-        transform.Find("SoundEffects").GetComponent<KeepSounds>().PlayUpgraded();
-        hasWall = true;
+        if (!hasWall) {
+            Instantiate(puffle, transform.position + Vector3.up, Quaternion.Inverse(transform.rotation), transform);
+
+            transform.Find("SoundEffects").GetComponent<KeepSounds>().PlayUpgraded();
+            hasWall = true;
+        }
     }
 
     void OnToggleMill()
     {
-        transform.Find("SoundEffects").GetComponent<KeepSounds>().PlayUpgraded();
-        hasMill = true;
+        if (!hasMill) {
+            Instantiate(puffle, transform.position + Vector3.up, Quaternion.Inverse(transform.rotation), transform);
+
+            transform.Find("SoundEffects").GetComponent<KeepSounds>().PlayUpgraded();
+            hasMill = true;
+        }
     }
 
     void OnToggleWatchtower()
     {
-        transform.Find("SoundEffects").GetComponent<KeepSounds>().PlayUpgraded();
-        hasWatchTower = true;
+        if(!hasWatchTower) {
+            Instantiate(puffle, transform.position + Vector3.up, Quaternion.Inverse(transform.rotation), transform);
+
+            transform.Find("SoundEffects").GetComponent<KeepSounds>().PlayUpgraded();
+            hasWatchTower = true;
+        }
     }
 
     void OnMove(InputValue value)
@@ -376,9 +411,20 @@ public class Hero : MonoBehaviour
         }
     }
 
+    void IncreaseMarsh()
+    {
+        marshCount++;
+    }
+
+    void DecreaseMarsh()
+    {
+        marshCount--;
+    }
+
     void FixedUpdate()
     {
         if (!dead) {
+            HandleSickness();
             UpdateTreeCollision();
             UpdateSickness();
             CheckVictory();
@@ -428,7 +474,7 @@ public class Hero : MonoBehaviour
 
         if (grounded && !dead && !knockback) {
             Vector3 currentVelocity = GetComponent<Rigidbody>().velocity;
-            GetComponent<Rigidbody>().velocity = new Vector3(0f, currentVelocity.y, 0f) + new Vector3(move.x, 0f, move.y) * Time.fixedDeltaTime * speed * speedMultiplier;
+            GetComponent<Rigidbody>().velocity = new Vector3(0f, currentVelocity.y, 0f) + new Vector3(move.x, 0f, move.y) * speed * speedMultiplier;
         }
 
         if (dead && drowning) {

@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Marsh : MonoBehaviour
-{   const float slowFactor = 0.5f;
+{
+    const float slowFactor = 0.5f;
+
     const float sicknessIncrement = 6f;
 
     void OnTriggerEnter(Collider other)
@@ -11,14 +13,7 @@ public class Marsh : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             other.gameObject.SendMessage("ApplySpeedModifier", slowFactor);
-        }
-    }
-
-    void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
-        {
-            other.gameObject.SendMessage("IncreaseSickness", sicknessIncrement * Time.fixedDeltaTime);
+            other.gameObject.SendMessage("IncreaseMarsh");
         }
     }
 
@@ -27,6 +22,7 @@ public class Marsh : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             other.gameObject.SendMessage("ApplySpeedModifier", 1f);
+            other.gameObject.SendMessage("DecreaseMarsh");
         }
     }
 

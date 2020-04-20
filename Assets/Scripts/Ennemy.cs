@@ -10,11 +10,19 @@ public class Ennemy : MonoBehaviour
 
     GameObject keep;
 
+    public SpriteRenderer[] weapons;
+
+    public SpriteRenderer cloud;
+
     float baseSpeed;
 
-    float speedUpDistance = 10f;
+    float speedUpDistance = 20f;
 
-    float speedUpRatio = 2f;
+    const float maxSpeed = 12f;
+
+    const float midspeed = 6f;
+
+    const float onKeep = 4.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -47,7 +55,11 @@ public class Ennemy : MonoBehaviour
 
         previousPosition = transform.position;
 
-        GetComponentInChildren<SpriteRenderer>().sortingOrder = (int) -(transform.position.z * 100);   
+        cloud.sortingOrder = (int) -(transform.position.z * 100);
+
+        foreach (SpriteRenderer r in weapons) {
+            r.sortingOrder =  (int) -(transform.position.z * 100) - 1;
+        }
 
         GetComponent<NavMeshAgent>().SetDestination(keep.transform.position);
 
@@ -60,9 +72,9 @@ public class Ennemy : MonoBehaviour
         float distance = Vector3.Distance(keep.transform.position, transform.position);
 
         if (distance > speedUpDistance) {
-            GetComponent<NavMeshAgent>().speed = baseSpeed * speedUpRatio;
+            GetComponent<NavMeshAgent>().speed = maxSpeed;
         } else {
-            GetComponent<NavMeshAgent>().speed = baseSpeed;
+            GetComponent<NavMeshAgent>().speed = Mathf.Lerp(onKeep, midspeed, distance / speedUpDistance);
         }
     }
 }
