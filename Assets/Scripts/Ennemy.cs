@@ -10,6 +10,10 @@ public class Ennemy : MonoBehaviour
 
     GameObject keep;
 
+    public SpriteRenderer[] weapons;
+
+    public SpriteRenderer cloud;
+
     float baseSpeed;
 
     float speedUpDistance = 10f;
@@ -47,7 +51,11 @@ public class Ennemy : MonoBehaviour
 
         previousPosition = transform.position;
 
-        GetComponentInChildren<SpriteRenderer>().sortingOrder = (int) -(transform.position.z * 100);   
+        cloud.sortingOrder = (int) -(transform.position.z * 100);
+
+        foreach (SpriteRenderer r in weapons) {
+            r.sortingOrder =  (int) -(transform.position.z * 100) - 1;
+        }
 
         GetComponent<NavMeshAgent>().SetDestination(keep.transform.position);
 
