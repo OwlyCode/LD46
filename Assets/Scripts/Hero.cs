@@ -120,7 +120,7 @@ public class Hero : MonoBehaviour
         }
 
         knockback = true;
-        StartCoroutine(KnockbackCooldown(3f));
+        StartCoroutine(KnockbackCooldown(0.5f));
         SetPhysicMaterial(slippery);
 
         GetComponent<Rigidbody>().velocity = Vector3.zero;
