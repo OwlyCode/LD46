@@ -363,13 +363,14 @@ GameObject:
   - component: {fileID: 8149185902580588481}
   - component: {fileID: 8567459862082445898}
   - component: {fileID: 4327035249072163427}
+  - component: {fileID: 318329931596515717}
   m_Layer: 0
   m_Name: DamagedHelmet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8149185902580588481
 Transform:
   m_ObjectHideFlags: 0
@@ -447,6 +448,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isInFront: 1
+--- !u!114 &318329931596515717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4532711480304669045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dcb577df39ba784f9e48fc48f427e26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  breakParticles: {fileID: 6640151291648428376, guid: 50bf09145ae8c2340a49aac0a22625a2,
+    type: 3}
 --- !u!1 &9088706824122267865
 GameObject:
   m_ObjectHideFlags: 0
@@ -603,6 +618,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Watchtower
       objectReference: {fileID: 0}
+    - target: {fileID: 2164221288395480979, guid: 82344e34df3d8f341b648e3b4fdc5c04,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2164221288395480980, guid: 82344e34df3d8f341b648e3b4fdc5c04,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -733,6 +753,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Wall
       objectReference: {fileID: 0}
+    - target: {fileID: 1374804187153101432, guid: 51f30d1b6c1e42a4d9a42f17f963d2be,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51f30d1b6c1e42a4d9a42f17f963d2be, type: 3}
 --- !u!4 &780529856996740184 stripped
@@ -808,6 +833,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Observatory
       objectReference: {fileID: 0}
+    - target: {fileID: 2440200465256847550, guid: 62c263368123dee49aff5c266a5388f6,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62c263368123dee49aff5c266a5388f6, type: 3}
 --- !u!4 &780529855611975411 stripped
@@ -831,7 +861,7 @@ PrefabInstance:
     - target: {fileID: 5480039334661832786, guid: 30652ea64a4d5fa4e89fd3e31699dd73,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5480039334661832787, guid: 30652ea64a4d5fa4e89fd3e31699dd73,
         type: 3}
@@ -962,6 +992,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Mill
+      objectReference: {fileID: 0}
+    - target: {fileID: 4868982837076328989, guid: f39e745d87283334580adfd1978c1db7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f39e745d87283334580adfd1978c1db7, type: 3}

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2440200465256847551}
   - component: {fileID: 2440200465256847546}
   - component: {fileID: 2440200465256847547}
+  - component: {fileID: 957703870436836475}
   m_Layer: 0
   m_Name: Observatory
   m_TagString: Untagged
@@ -131,3 +132,17 @@ CapsuleCollider:
   m_Height: 4.33
   m_Direction: 1
   m_Center: {x: -0.25, y: 2.58, z: 0}
+--- !u!114 &957703870436836475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2440200465256847550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dcb577df39ba784f9e48fc48f427e26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  breakParticles: {fileID: 6640151291648428376, guid: 50bf09145ae8c2340a49aac0a22625a2,
+    type: 3}

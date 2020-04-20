@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5480039334661832787}
   - component: {fileID: 5480039334661832784}
   - component: {fileID: 5480039334661832785}
+  - component: {fileID: 3716896254392578184}
   m_Layer: 0
   m_Name: Helmet
   m_TagString: Untagged
@@ -95,3 +96,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isInFront: 1
+--- !u!114 &3716896254392578184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5480039334661832786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dcb577df39ba784f9e48fc48f427e26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  breakParticles: {fileID: 6640151291648428376, guid: 50bf09145ae8c2340a49aac0a22625a2,
+    type: 3}
