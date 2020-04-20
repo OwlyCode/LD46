@@ -2712,15 +2712,14 @@ GameObject:
   - component: {fileID: 327667179}
   - component: {fileID: 327667181}
   - component: {fileID: 327667182}
-  - component: {fileID: 327667183}
   - component: {fileID: 327667185}
   - component: {fileID: 327667186}
   - component: {fileID: 327667187}
   - component: {fileID: 327667188}
-  - component: {fileID: 327667184}
   - component: {fileID: 327667189}
   - component: {fileID: 327667190}
   - component: {fileID: 327667191}
+  - component: {fileID: 327667183}
   m_Layer: 9
   m_Name: Keep
   m_TagString: Untagged
@@ -2867,23 +2866,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.84
-  m_Height: 4.3027377
-  m_Direction: 1
-  m_Center: {x: 0, y: 3.3886316, z: 0}
---- !u!135 &327667184
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 327667178}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.25
-  m_Center: {x: 0, y: 0.43, z: 0}
+  m_Radius: 0.38615203
+  m_Height: 2.4450054
+  m_Direction: 0
+  m_Center: {x: 0, y: 0.52, z: 0}
 --- !u!114 &327667185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4207,7 +4193,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &566906067
 Transform:
   m_ObjectHideFlags: 0

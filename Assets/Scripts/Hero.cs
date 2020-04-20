@@ -296,8 +296,14 @@ public class Hero : MonoBehaviour
         }
     }
 
+    void UpdateTreeCollision()
+    {
+        Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Tree"), !hasAnyModule());
+    }
+
     void FixedUpdate()
     {
+        UpdateTreeCollision();
         UpdateSickness();
 
         mill.SetActive(hasMill);
@@ -338,7 +344,7 @@ public class Hero : MonoBehaviour
             animator.SetInteger("MoveUpDown", 0);
         }
 
-        GetComponent<SpriteRenderer>().sortingOrder = (int) -(transform.position.z * 1000);
+        GetComponent<SpriteRenderer>().sortingOrder = (int) -(transform.position.z * 100);
 
         if (grounded && !dead && !knockback) {
             Vector3 currentVelocity = GetComponent<Rigidbody>().velocity;

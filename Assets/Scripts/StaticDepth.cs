@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class StaticDepth : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public bool useParent = true;
+
     void Start()
     {
-        GetComponent<SpriteRenderer>().sortingOrder = (int) -(transform.position.z * 1000);   
+        GetComponent<SpriteRenderer>().sortingOrder = (int) -((useParent ? transform.parent.position.z : transform.position.z) * 100);   
     }
 }

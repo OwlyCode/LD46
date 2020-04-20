@@ -24,7 +24,7 @@ public class Ennemy : MonoBehaviour
 
         previousPosition = transform.position;
 
-        GetComponentInChildren<SpriteRenderer>().sortingOrder = (int) -(transform.position.z * 1000);   
+        GetComponentInChildren<SpriteRenderer>().sortingOrder = (int) -(transform.position.z * 100);   
 
         GetComponent<NavMeshAgent>().SetDestination(GameObject.Find("Keep").transform.position);
     }
