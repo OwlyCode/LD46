@@ -7,7 +7,9 @@ using Cinemachine;
 
 public class Hero : MonoBehaviour
 {
-    const float speed = 300f;
+    public GameObject puffle;
+
+    const float speed = 6f;
 
     const float jumpUpForce = 250f;
     const float jumpSideForce = 150f;
@@ -21,6 +23,9 @@ public class Hero : MonoBehaviour
     const float sicknessDecay = 12f;
 
     const float knockbackStrength = 220f;
+
+    const float sicknessIncrement = 6f;
+
 
     public bool IsMoving = false;
 
@@ -38,7 +43,9 @@ public class Hero : MonoBehaviour
 
     public bool knockback = false;
 
-    bool dead = false;
+    public bool dead = false;
+
+    public bool drowning = false;
 
     public bool immune = false;
 
@@ -68,6 +75,10 @@ public class Hero : MonoBehaviour
     float sickness = 0f;
     bool sicknessIncreased = false;
 
+    IEnumerator blinking;
+
+    public int marshCount = 0;
+
     void Start()
     {
         mill = transform.Find("Mill").gameObject;
@@ -75,6 +86,8 @@ public class Hero : MonoBehaviour
         wall = transform.Find("Wall").gameObject;
         watchtower = transform.Find("Watchtower").gameObject;
         observatory = transform.Find("Observatory").gameObject;
+
+        blinking = ImmuneBlink(0.2f);
     }
 
     public void ApplyWind(Vector3 windModifier)
@@ -87,11 +100,13 @@ public class Hero : MonoBehaviour
         this.speedMultiplier = speedMultiplier;
     }
 
-    public void IncreaseSickness(float amount)
+    public void HandleSickness()
     {
-        this.sickness += amount;
-        sickness = Mathf.Clamp(sickness, 0, maxSickness);
-        sicknessIncreased = true;
+        if (marshCount > 0) {
+            this.sickness += sicknessIncrement * Time.deltaTime;
+            sickness = Mathf.Clamp(sickness, 0, maxSickness);
+            sicknessIncreased = true;
+        }
     }
 
     public void LoseAllModules()
@@ -117,20 +132,24 @@ public class Hero : MonoBehaviour
 
     public void HordeDamage(Vector3 ennemyVelocity)
     {
-        if (immune || knockback) {
+        if (immune || knockback || dead) {
             return;
         }
 
         if (!hasAnyModule()) {
             Die();
-
-            return;
+        } else {
+            LoseModule();
         }
-
-        LoseModule();
 
         knockback = true;
         immune = true;
+        Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Horde"), true);
+
+        if (!dead) {
+            StartCoroutine(blinking);
+        }
+
         StartCoroutine(KnockbackCooldown(1f));
         StartCoroutine(ImmunityCooldown(3f));
         SetPhysicMaterial(slippery);
@@ -163,7 +182,10 @@ public class Hero : MonoBehaviour
     {
         yield return new WaitForSeconds(duration);
 
+        StopCoroutine(blinking);
         immune = false;
+
+        Physics.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Horde"), false);
     }
 
     public void LoseModule()
@@ -210,10 +232,17 @@ public class Hero : MonoBehaviour
         return hasObservatory || hasHelmet || hasWall || hasMill || hasWatchTower;
     }
 
-    void Die()
+    void Die(bool flip = true)
     {
         if (dead) {
             return;
+        }
+
+        GetComponent<AutoRotate>().enabled = false;
+
+        if (flip) {
+            transform.rotation = Quaternion.Euler(90f, 15f, 0f);
+            SetColor(Color.gray);
         }
 
         SendMessage("OnFadeOutMusic");
@@ -221,6 +250,8 @@ public class Hero : MonoBehaviour
         dead = true;
         transform.Find("SoundEffects").GetComponent<KeepSounds>().PlayDead();
         GameObject.Find("LevelLoader").GetComponent<LevelLoader>().Reboot(2f);
+
+        transform.position = transform.position + Vector3.up * 0.1f;
     }
 
     void OnWaterTouch()
@@ -228,6 +259,8 @@ public class Hero : MonoBehaviour
         if (hasWall) {
             return;
         }
+
+        drowning = true;
 
         foreach(Collider c in GetComponents<Collider>()) {
             c.enabled = false;
@@ -237,38 +270,59 @@ public class Hero : MonoBehaviour
             c.enabled = false;
         }
 
-        Die();
+        Die(false);
     }
 
     void OnToggleHelmet()
     {
         transform.Find("SoundEffects").GetComponent<KeepSounds>().PlayUpgraded();
-        hasHelmet = true;
-        damagedHelmet = false;
+
+        if (!hasHelmet) {
+            Instantiate(puffle, transform.position + Vector3.up, Quaternion.Inverse(transform.rotation), transform);
+        
+            hasHelmet = true;
+            damagedHelmet = false;
+        }
     }
 
     void OnToggleObservatory()
     {
-        transform.Find("SoundEffects").GetComponent<KeepSounds>().PlayUpgraded();
-        hasObservatory = true;
+        if (!hasObservatory) {
+            Instantiate(puffle, transform.position + Vector3.up, Quaternion.Inverse(transform.rotation), transform);
+
+            transform.Find("SoundEffects").GetComponent<KeepSounds>().PlayUpgraded();
+            hasObservatory = true;
+        }
     }
 
     void OnToggleWall()
     {
-        transform.Find("SoundEffects").GetComponent<KeepSounds>().PlayUpgraded();
-        hasWall = true;
+        if (!hasWall) {
+            Instantiate(puffle, transform.position + Vector3.up, Quaternion.Inverse(transform.rotation), transform);
+
+            transform.Find("SoundEffects").GetComponent<KeepSounds>().PlayUpgraded();
+            hasWall = true;
+        }
     }
 
     void OnToggleMill()
     {
-        transform.Find("SoundEffects").GetComponent<KeepSounds>().PlayUpgraded();
-        hasMill = true;
+        if (!hasMill) {
+            Instantiate(puffle, transform.position + Vector3.up, Quaternion.Inverse(transform.rotation), transform);
+
+            transform.Find("SoundEffects").GetComponent<KeepSounds>().PlayUpgraded();
+            hasMill = true;
+        }
     }
 
     void OnToggleWatchtower()
     {
-        transform.Find("SoundEffects").GetComponent<KeepSounds>().PlayUpgraded();
-        hasWatchTower = true;
+        if(!hasWatchTower) {
+            Instantiate(puffle, transform.position + Vector3.up, Quaternion.Inverse(transform.rotation), transform);
+
+            transform.Find("SoundEffects").GetComponent<KeepSounds>().PlayUpgraded();
+            hasWatchTower = true;
+        }
     }
 
     void OnMove(InputValue value)
@@ -320,15 +374,28 @@ public class Hero : MonoBehaviour
 
         sickness = Mathf.Clamp(sickness, 0, maxSickness);
 
-        Color color = Color.Lerp(Color.white, sicknessColor, sickness / maxSickness);
+        SetColor(Color.Lerp(Color.white, sicknessColor, sickness / maxSickness));
+    }
 
+    IEnumerator ImmuneBlink(float duration)
+    {
+        while (immune) {
+            SetColor(Color.gray);
+            yield return new WaitForSeconds(duration);
+            SetColor(Color.white);
+            yield return new WaitForSeconds(duration);
+        }
+    }
+
+    void SetColor(Color color)
+    {
         foreach(SpriteRenderer r in GetComponents<SpriteRenderer>()) {
             r.color = color;
         }
 
         foreach(SpriteRenderer r in GetComponentsInChildren<SpriteRenderer>()) {
             r.color = color;
-        }
+        }   
     }
 
     void UpdateTreeCollision()
@@ -344,11 +411,24 @@ public class Hero : MonoBehaviour
         }
     }
 
+    void IncreaseMarsh()
+    {
+        marshCount++;
+    }
+
+    void DecreaseMarsh()
+    {
+        marshCount--;
+    }
+
     void FixedUpdate()
     {
-        UpdateTreeCollision();
-        UpdateSickness();
-        CheckVictory();
+        if (!dead) {
+            HandleSickness();
+            UpdateTreeCollision();
+            UpdateSickness();
+            CheckVictory();
+        }
 
         mill.SetActive(hasMill);
         helmet.SetActive(hasHelmet);
@@ -394,10 +474,10 @@ public class Hero : MonoBehaviour
 
         if (grounded && !dead && !knockback) {
             Vector3 currentVelocity = GetComponent<Rigidbody>().velocity;
-            GetComponent<Rigidbody>().velocity = new Vector3(0f, currentVelocity.y, 0f) + new Vector3(move.x, 0f, move.y) * Time.fixedDeltaTime * speed * speedMultiplier;
+            GetComponent<Rigidbody>().velocity = new Vector3(0f, currentVelocity.y, 0f) + new Vector3(move.x, 0f, move.y) * speed * speedMultiplier;
         }
 
-        if (dead) {
+        if (dead && drowning) {
             GetComponent<Rigidbody>().velocity = new Vector3(lastMovement.x * 0.8f, -0.3f, lastMovement.y * 0.8f);
 
             if (transform.position.y < -0.5f) {

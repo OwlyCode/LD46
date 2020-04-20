@@ -141,6 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b183bfb1687553e42ab40292fb8e5574, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  puffle: {fileID: 4988960669260525723, guid: f99b7e954d3ff0a4687d7873a0298052, type: 3}
   IsMoving: 0
   move: {x: 0, y: 0}
   lastMovement: {x: 0, y: 0}
@@ -148,6 +149,8 @@ MonoBehaviour:
   watchtowerCamera: {fileID: 0}
   sicknessColor: {r: 0.16470589, g: 0.7294118, b: 0.20784314, a: 0}
   knockback: 0
+  dead: 0
+  drowning: 0
   immune: 0
   hasObservatory: 0
   hasHelmet: 0
@@ -158,6 +161,7 @@ MonoBehaviour:
   animator: {fileID: 780529855484742260}
   slippery: {fileID: 13400000, guid: ed1ca8d171d1ca549ad5fca563b05e7e, type: 2}
   sticky: {fileID: 13400000, guid: 3c38f80376d07c944ba054a9e541399c, type: 2}
+  marshCount: 0
 --- !u!114 &780529855484742257
 MonoBehaviour:
   m_ObjectHideFlags: 0

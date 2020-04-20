@@ -10,6 +10,20 @@ public class Ennemy : MonoBehaviour
 
     GameObject keep;
 
+    public SpriteRenderer[] weapons;
+
+    public SpriteRenderer cloud;
+
+    float baseSpeed;
+
+    float speedUpDistance = 20f;
+
+    const float maxSpeed = 12f;
+
+    const float midspeed = 6f;
+
+    const float onKeep = 4.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +31,7 @@ public class Ennemy : MonoBehaviour
         velocity = Vector3.zero;
         previousPosition = transform.position;
 
+        baseSpeed = GetComponent<NavMeshAgent>().speed;
         GetComponentInChildren<Animator>().SetFloat("Offset", Random.Range(0.0f, 1.0f));
     }
 
@@ -40,12 +55,26 @@ public class Ennemy : MonoBehaviour
 
         previousPosition = transform.position;
 
-        GetComponentInChildren<SpriteRenderer>().sortingOrder = (int) -(transform.position.z * 100);   
+        cloud.sortingOrder = (int) -(transform.position.z * 100);
+
+        foreach (SpriteRenderer r in weapons) {
+            r.sortingOrder =  (int) -(transform.position.z * 100) - 1;
+        }
 
         GetComponent<NavMeshAgent>().SetDestination(keep.transform.position);
 
-        if (keep.GetComponent<Hero>().knockback) {
+        Hero h = keep.GetComponent<Hero>();
+
+        if (h.knockback || h.dead) {
             GetComponent<NavMeshAgent>().SetDestination(transform.position);
+        }
+
+        float distance = Vector3.Distance(keep.transform.position, transform.position);
+
+        if (distance > speedUpDistance) {
+            GetComponent<NavMeshAgent>().speed = maxSpeed;
+        } else {
+            GetComponent<NavMeshAgent>().speed = Mathf.Lerp(onKeep, midspeed, distance / speedUpDistance);
         }
     }
 }
