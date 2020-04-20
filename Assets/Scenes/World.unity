@@ -518,6 +518,11 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 6.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5094029492237894474, guid: 4550eb6cc37698e4a8e3dfb7742d2fbb,
+        type: 3}
+      propertyPath: toggledItem
+      value: Helmet
+      objectReference: {fileID: 0}
     - target: {fileID: -4216859302048453862, guid: f837d7eecb8d72d4188ceea72e158394,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2355,6 +2360,11 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4998227188049836763, guid: 4550eb6cc37698e4a8e3dfb7742d2fbb,
+        type: 3}
+      propertyPath: toggledItem
+      value: Watchtower
+      objectReference: {fileID: 0}
+    - target: {fileID: 5094029492237894474, guid: 4550eb6cc37698e4a8e3dfb7742d2fbb,
         type: 3}
       propertyPath: toggledItem
       value: Watchtower
@@ -18582,6 +18592,11 @@ PrefabInstance:
       propertyPath: toggledItem
       value: Observatory
       objectReference: {fileID: 0}
+    - target: {fileID: 5094029492237894474, guid: 4550eb6cc37698e4a8e3dfb7742d2fbb,
+        type: 3}
+      propertyPath: toggledItem
+      value: Observatory
+      objectReference: {fileID: 0}
     - target: {fileID: 5430577677494260489, guid: 4550eb6cc37698e4a8e3dfb7742d2fbb,
         type: 3}
       propertyPath: m_LocalPosition.z
@@ -22244,6 +22259,11 @@ PrefabInstance:
       propertyPath: toggledItem
       value: Wall
       objectReference: {fileID: 0}
+    - target: {fileID: 5094029492237894474, guid: 4550eb6cc37698e4a8e3dfb7742d2fbb,
+        type: 3}
+      propertyPath: toggledItem
+      value: Wall
+      objectReference: {fileID: 0}
     - target: {fileID: 5389444859181894470, guid: 4550eb6cc37698e4a8e3dfb7742d2fbb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -24415,17 +24435,17 @@ PrefabInstance:
     - target: {fileID: 780529855484742254, guid: 23eff7e993e3dc5489de2addcfa44ad5,
         type: 3}
       propertyPath: hasWall
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 780529855484742254, guid: 23eff7e993e3dc5489de2addcfa44ad5,
         type: 3}
       propertyPath: hasObservatory
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 780529855484742254, guid: 23eff7e993e3dc5489de2addcfa44ad5,
         type: 3}
       propertyPath: hasHelmet
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 780529855484742254, guid: 23eff7e993e3dc5489de2addcfa44ad5,
         type: 3}
@@ -24435,8 +24455,13 @@ PrefabInstance:
     - target: {fileID: 780529855484742254, guid: 23eff7e993e3dc5489de2addcfa44ad5,
         type: 3}
       propertyPath: hasWatchTower
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1218624810122206152, guid: 23eff7e993e3dc5489de2addcfa44ad5,
+        type: 3}
+      propertyPath: upgraded
+      value: 
+      objectReference: {fileID: 8300000, guid: cf17edb44dd41054488f17909e9c5f38, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23eff7e993e3dc5489de2addcfa44ad5, type: 3}
 --- !u!1 &1631099162

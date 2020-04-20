@@ -99,6 +99,8 @@ public class Hero : MonoBehaviour
         if (immune) {
             return;
         }
+        
+        transform.Find("SoundEffects").GetComponent<KeepSounds>().PlayDamaged();
 
         hasObservatory = false;
 
@@ -170,6 +172,8 @@ public class Hero : MonoBehaviour
             return;
         }
 
+        transform.Find("SoundEffects").GetComponent<KeepSounds>().PlayDamaged();
+
         if (hasHelmet) {
             if (damagedHelmet) {
                 hasHelmet = false;
@@ -208,7 +212,14 @@ public class Hero : MonoBehaviour
 
     void Die()
     {
+        if (dead) {
+            return;
+        }
+
+        SendMessage("OnFadeOutMusic");
+
         dead = true;
+        transform.Find("SoundEffects").GetComponent<KeepSounds>().PlayDead();
         GameObject.Find("LevelLoader").GetComponent<LevelLoader>().Reboot(2f);
     }
 
@@ -231,27 +242,32 @@ public class Hero : MonoBehaviour
 
     void OnToggleHelmet()
     {
+        transform.Find("SoundEffects").GetComponent<KeepSounds>().PlayUpgraded();
         hasHelmet = true;
         damagedHelmet = false;
     }
 
     void OnToggleObservatory()
     {
+        transform.Find("SoundEffects").GetComponent<KeepSounds>().PlayUpgraded();
         hasObservatory = true;
     }
 
     void OnToggleWall()
     {
+        transform.Find("SoundEffects").GetComponent<KeepSounds>().PlayUpgraded();
         hasWall = true;
     }
 
     void OnToggleMill()
     {
+        transform.Find("SoundEffects").GetComponent<KeepSounds>().PlayUpgraded();
         hasMill = true;
     }
 
     void OnToggleWatchtower()
     {
+        transform.Find("SoundEffects").GetComponent<KeepSounds>().PlayUpgraded();
         hasWatchTower = true;
     }
 
