@@ -7,7 +7,7 @@ using Cinemachine;
 
 public class Hero : MonoBehaviour
 {
-    const float speed = 150f;
+    const float speed = 300f;
 
     const float jumpUpForce = 250f;
     const float jumpSideForce = 150f;
