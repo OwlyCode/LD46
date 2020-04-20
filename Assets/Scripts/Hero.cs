@@ -9,8 +9,8 @@ public class Hero : MonoBehaviour
 {
     const float speed = 150f;
 
-    const float jumpUpForce = 200f;
-    const float jumpSideForce = 70f;
+    const float jumpUpForce = 250f;
+    const float jumpSideForce = 150f;
 
     const float groundedRaycastDistance = 1f;
 
@@ -124,8 +124,8 @@ public class Hero : MonoBehaviour
         SetPhysicMaterial(slippery);
 
         GetComponent<Rigidbody>().velocity = Vector3.zero;
-        GetComponent<Rigidbody>().AddForce(new Vector3(0f, knockbackStrength * 2f, 0f));
-        GetComponent<Rigidbody>().AddForce(ennemyVelocity.normalized * knockbackStrength);
+        GetComponent<Rigidbody>().AddForce(new Vector3(0f, knockbackStrength, 0f));
+        GetComponent<Rigidbody>().AddForce(ennemyVelocity.normalized * knockbackStrength * 2f);
 
         LoseModule();
     }
