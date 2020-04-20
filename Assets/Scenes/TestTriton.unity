@@ -638,7 +638,7 @@ PrefabInstance:
     - target: {fileID: 632657486609446812, guid: 850c48bc29380c04f8728a70eeea01bf,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.09
+      value: -8.19
       objectReference: {fileID: 0}
     - target: {fileID: 632657486609446812, guid: 850c48bc29380c04f8728a70eeea01bf,
         type: 3}
@@ -648,7 +648,7 @@ PrefabInstance:
     - target: {fileID: 632657486609446812, guid: 850c48bc29380c04f8728a70eeea01bf,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -11.67
+      value: -11.47
       objectReference: {fileID: 0}
     - target: {fileID: 632657486609446812, guid: 850c48bc29380c04f8728a70eeea01bf,
         type: 3}
@@ -4264,6 +4264,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5094029492237894474, guid: 4550eb6cc37698e4a8e3dfb7742d2fbb,
+        type: 3}
+      propertyPath: toggledItem
+      value: Helmet
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4550eb6cc37698e4a8e3dfb7742d2fbb, type: 3}
 --- !u!4 &636308880 stripped
@@ -4345,6 +4350,11 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4998227188049836763, guid: 4550eb6cc37698e4a8e3dfb7742d2fbb,
+        type: 3}
+      propertyPath: toggledItem
+      value: Observatory
+      objectReference: {fileID: 0}
+    - target: {fileID: 5094029492237894474, guid: 4550eb6cc37698e4a8e3dfb7742d2fbb,
         type: 3}
       propertyPath: toggledItem
       value: Observatory
@@ -13252,6 +13262,11 @@ PrefabInstance:
       propertyPath: toggledItem
       value: Wall
       objectReference: {fileID: 0}
+    - target: {fileID: 5094029492237894474, guid: 4550eb6cc37698e4a8e3dfb7742d2fbb,
+        type: 3}
+      propertyPath: toggledItem
+      value: Wall
+      objectReference: {fileID: 0}
     - target: {fileID: 5389444859181894473, guid: 4550eb6cc37698e4a8e3dfb7742d2fbb,
         type: 3}
       propertyPath: m_IsActive
@@ -15379,6 +15394,11 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4998227188049836763, guid: 4550eb6cc37698e4a8e3dfb7742d2fbb,
+        type: 3}
+      propertyPath: toggledItem
+      value: Watchtower
+      objectReference: {fileID: 0}
+    - target: {fileID: 5094029492237894474, guid: 4550eb6cc37698e4a8e3dfb7742d2fbb,
         type: 3}
       propertyPath: toggledItem
       value: Watchtower
