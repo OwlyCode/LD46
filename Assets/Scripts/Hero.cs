@@ -69,6 +69,7 @@ public class Hero : MonoBehaviour
     GameObject wall;
     GameObject watchtower;
     GameObject observatory;
+    GameObject damagedHelmetInstance;
 
     float speedMultiplier = 1f;
 
@@ -83,6 +84,7 @@ public class Hero : MonoBehaviour
     {
         mill = transform.Find("Mill").gameObject;
         helmet = transform.Find("Helmet").gameObject;
+        damagedHelmetInstance = transform.Find("DamagedHelmet").gameObject;
         wall = transform.Find("Wall").gameObject;
         watchtower = transform.Find("Watchtower").gameObject;
         observatory = transform.Find("Observatory").gameObject;
@@ -424,7 +426,8 @@ public class Hero : MonoBehaviour
         }
 
         mill.SetActive(hasMill);
-        helmet.SetActive(hasHelmet);
+        helmet.SetActive(hasHelmet && !damagedHelmet);
+        damagedHelmetInstance.SetActive(hasHelmet && damagedHelmet);
         wall.SetActive(hasWall);
         watchtower.SetActive(hasWatchTower);
         observatory.SetActive(hasObservatory);
