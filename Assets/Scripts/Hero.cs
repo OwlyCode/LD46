@@ -115,7 +115,9 @@ public class Hero : MonoBehaviour
             return;
         }
         
-        transform.Find("SoundEffects").GetComponent<KeepSounds>().PlayDamaged();
+        if (hasAnyModule()) {
+            transform.Find("SoundEffects").GetComponent<KeepSounds>().PlayDamaged();
+        }
 
         hasObservatory = false;
 
@@ -237,13 +239,10 @@ public class Hero : MonoBehaviour
         if (dead) {
             return;
         }
+        
+        animator.SetBool("Dead", true);
 
         GetComponent<AutoRotate>().enabled = false;
-
-        if (flip) {
-            transform.rotation = Quaternion.Euler(90f, 15f, 0f);
-            SetColor(Color.gray);
-        }
 
         SendMessage("OnFadeOutMusic");
 
@@ -445,6 +444,8 @@ public class Hero : MonoBehaviour
         if (!grounded && this.grounded && !dead && !knockback)
         {
             GetComponent<Rigidbody>().velocity = Vector3.zero;
+            animator.SetTrigger("Jump");
+            transform.Find("SoundEffects").GetComponent<KeepSounds>().PlayJump();
             GetComponent<Rigidbody>().AddForce(new Vector3(lastMovement.x * jumpSideForce, jumpUpForce, lastMovement.y * jumpSideForce));
         }
 
@@ -459,7 +460,7 @@ public class Hero : MonoBehaviour
         }
 
         this.grounded = grounded;
-
+        animator.SetBool("Grounded", grounded);
 
         if(move.x == 0)
         {
