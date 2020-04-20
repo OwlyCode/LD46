@@ -10,8 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 6039583135877684009}
   - component: {fileID: 379629199649344510}
-  - component: {fileID: 7761067215394144717}
-  - component: {fileID: 5187419283528574740}
   m_Layer: 0
   m_Name: rotator
   m_TagString: Untagged
@@ -44,32 +42,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 11c8a86be3e74a94fb7ee797508ea09f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!136 &7761067215394144717
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3656727756544360293}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.7762697
-  m_Height: 2.5082269
-  m_Direction: 0
-  m_Center: {x: 0, y: 1.3829474, z: -0.00000009934107}
---- !u!114 &5187419283528574740
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3656727756544360293}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72721fe946a1e9c4099737748353c97a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &4989746261195522783
@@ -198,6 +170,7 @@ GameObject:
   - component: {fileID: 6374590931884331142}
   - component: {fileID: 6374590931884331145}
   - component: {fileID: 6374590931884331147}
+  - component: {fileID: 5978837070409227560}
   m_Layer: 0
   m_Name: ennemy
   m_TagString: Untagged
@@ -255,3 +228,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: {x: 0, y: 0, z: 0}
+--- !u!65 &5978837070409227560
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6374590931884331138}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.34, y: 3.53, z: 1.43}
+  m_Center: {x: 0, y: 0, z: 0}

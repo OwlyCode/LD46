@@ -115,7 +115,7 @@ public class Hero : MonoBehaviour
 
     public void HordeDamage(Vector3 ennemyVelocity)
     {
-        if (knockback) {
+        if (immune || knockback) {
             return;
         }
 

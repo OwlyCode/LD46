@@ -20,6 +20,19 @@ public class Ennemy : MonoBehaviour
         GetComponentInChildren<Animator>().SetFloat("Offset", Random.Range(0.0f, 1.0f));
     }
 
+    void OnCollisionStay(Collision collision)
+    {
+        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Player")) {
+            collision.collider.gameObject.GetComponent<Hero>().HordeDamage(GetComponent<Ennemy>().velocity);
+        }
+    }
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.gameObject.layer == LayerMask.NameToLayer("Player")) {
+            collision.collider.gameObject.GetComponent<Hero>().HordeDamage(GetComponent<Ennemy>().velocity);
+        }
+    }
+
     // Update is called once per frame
     void FixedUpdate()
     {
