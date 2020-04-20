@@ -50,6 +50,9 @@ public class Hero : MonoBehaviour
 
     public Animator animator;
 
+    public PhysicMaterial slippery;
+    public PhysicMaterial sticky;
+
     Vector3 windModifier = Vector3.zero;
 
     GameObject mill;
@@ -106,6 +109,10 @@ public class Hero : MonoBehaviour
 
     public void HordeDamage(Vector3 ennemyVelocity)
     {
+        if (knockback) {
+            return;
+        }
+
         if (!hasAnyModule()) {
             Die();
 
@@ -113,7 +120,8 @@ public class Hero : MonoBehaviour
         }
 
         knockback = true;
-        StartCoroutine(KnockbackCooldown(0.5f));
+        StartCoroutine(KnockbackCooldown(3f));
+        SetPhysicMaterial(slippery);
 
         GetComponent<Rigidbody>().velocity = Vector3.zero;
         GetComponent<Rigidbody>().AddForce(new Vector3(0f, knockbackStrength * 2f, 0f));
@@ -122,9 +130,21 @@ public class Hero : MonoBehaviour
         LoseModule();
     }
 
+    void SetPhysicMaterial(PhysicMaterial material)
+    {
+        foreach(Collider c in GetComponents<Collider>()) {
+            c.material = material;
+        }
+
+        foreach(Collider c in GetComponentsInChildren<Collider>()) {
+            c.material = material;
+        }
+    }
+
     IEnumerator KnockbackCooldown(float duration)
     {
         yield return new WaitForSeconds(duration);
+        SetPhysicMaterial(sticky);
 
         knockback = false;
     }

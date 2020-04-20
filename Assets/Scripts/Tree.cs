@@ -26,7 +26,7 @@ public class Tree : MonoBehaviour
                 StartCoroutine("ForgetCollisionIgnore", collision);
             }
 
-            excitation = 80f;
+            excitation = 40f;
         }
     }
 
