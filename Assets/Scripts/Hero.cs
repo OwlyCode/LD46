@@ -7,7 +7,7 @@ using Cinemachine;
 
 public class Hero : MonoBehaviour
 {
-    const float speed = 300f;
+    const float speed = 6f;
 
     const float jumpUpForce = 250f;
     const float jumpSideForce = 150f;
@@ -230,7 +230,7 @@ public class Hero : MonoBehaviour
         return hasObservatory || hasHelmet || hasWall || hasMill || hasWatchTower;
     }
 
-    void Die()
+    void Die(bool flip = true)
     {
         if (dead) {
             return;
@@ -238,8 +238,10 @@ public class Hero : MonoBehaviour
 
         GetComponent<AutoRotate>().enabled = false;
 
-        transform.rotation = Quaternion.Euler(90f, 15f, 0f);
-        SetColor(Color.gray);
+        if (flip) {
+            transform.rotation = Quaternion.Euler(90f, 15f, 0f);
+            SetColor(Color.gray);
+        }
 
         SendMessage("OnFadeOutMusic");
 
@@ -266,7 +268,7 @@ public class Hero : MonoBehaviour
             c.enabled = false;
         }
 
-        Die();
+        Die(false);
     }
 
     void OnToggleHelmet()
@@ -449,7 +451,7 @@ public class Hero : MonoBehaviour
 
         if (grounded && !dead && !knockback) {
             Vector3 currentVelocity = GetComponent<Rigidbody>().velocity;
-            GetComponent<Rigidbody>().velocity = new Vector3(0f, currentVelocity.y, 0f) + new Vector3(move.x, 0f, move.y) * Time.fixedDeltaTime * speed * speedMultiplier;
+            GetComponent<Rigidbody>().velocity = new Vector3(0f, currentVelocity.y, 0f) + new Vector3(move.x, 0f, move.y) * speed * speedMultiplier;
         }
 
         if (dead && drowning) {
